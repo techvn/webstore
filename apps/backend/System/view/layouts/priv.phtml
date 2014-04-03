@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf8">
+	<?php echo $this->headTitle('MDS '. $this->translate('BackEnd'))->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+   <!-- Apple devices fullscreen -->
+    <?php echo $this->headMeta()->appendName('apple-mobile-web-app-capable', 'yes')?>
+    <!-- Apple devices fullscreen -->  
+    <?php echo $this->headMeta()->appendName('apple-mobile-web-app-status-bar-style', 'black-translucent') ?>
+
+    <!-- Bootstrap styles -->
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/temp/private/default/assets/img/favicon.ico'))
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/style.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/plugins/jquery-ui/smoothness/jquery-ui.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/bootstrap-responsive.min.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/plugins/datatable/TableTools.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/plugins/chosen/chosen.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/bootstrap.min.css') ?>
+    <!-- Scripts -->
+    <?php echo $this->headScript()
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/demonstration.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/application.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/eakroko.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/validation/additional-methods.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/validation/jquery.validate.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/form/jquery.form.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/bootbox/jquery.bootbox.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/bootstrap.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/slimscroll/jquery.slimscroll.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/jquery-ui/jquery.ui.resizable.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/jquery-ui/jquery.ui.mouse.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/jquery-ui/jquery.ui.widget.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/jquery-ui/jquery.ui.core.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/jquery.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/datatable/jquery.dataTables.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/datatable/TableTools.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/datatable/ColReorder.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/datatable/ColVis.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/plugins/chosen/chosen.jquery.min.js')
+    ; ?>
+
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="<?php echo $this->basePath();?>/temp/private/default/assets/img/apple-touch-icon-precomposed.png" />
+
+</head>
+
+<body>
+	<div id="navigation">
+        <?php echo $this->partial('navigation');?>
+	</div><!-- end-navigation -->
+	<div class="container-fluid" id="content">
+		<div id="left">
+            <?php echo $this->partial('menuleft');?>
+		</div><!-- end-left -->
+		<div id="main">
+			<div class="container-fluid">
+				<div class="page-header">
+                    <?php echo $this->partial('pageheader');?>
+				</div><!-- end-page-header -->
+				<div class="breadcrumbs">
+                    <?php echo $this->partial('breadcrumbs');?>
+				</div><!-- end-breadcrumbs -->
+				<?php echo $this->partial('messages', array('messages' => $this->flashMessages)); ?>
+				<div class="row-fluid">
+					<div class="span12">
+					<p>
+						<?php echo $this->content; ?>
+					</div>
+				</div><!-- end-row-fluid -->
+			</div>
+		</div>
+	</div>
+	</body>
+
+	</html>
+

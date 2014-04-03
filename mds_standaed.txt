@@ -1,0 +1,259 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.6
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2014 at 06:18 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `mds`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_articles`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL DEFAULT '0',
+  `uid` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `thumb` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_des` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `meta_key` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_categories` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL DEFAULT '0',
+  `parrent_id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `metades` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `metakey` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `mds_categories`
+--
+
+INSERT INTO `mds_categories` (`id`, `uid`, `parrent_id`, `title`, `slug`, `metades`, `metakey`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(12, 0, 6, 'gggg', 'gggg', 'ggg', 'ggg', 0, '2014-04-03 09:56:10', '2014-04-03 10:03:02', '0000-00-00 00:00:00'),
+(6, 0, 0, 'bai viet', 'bai-viet', 'des bai viet', 'key bai viet', 0, '0000-00-00 00:00:00', '2014-04-03 08:30:20', '0000-00-00 00:00:00'),
+(9, 0, 0, 'abc', 'abc-d', 'metades', 'metakey', 1, '2014-04-03 08:43:03', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 0, 0, 'chu de moi', 'chu-de-moi', 'chu de moi\r\n', 'chu de moi', 1, '2014-04-03 09:40:20', '2014-04-03 09:50:15', '0000-00-00 00:00:00'),
+(11, 0, 10, 'ddd', 'ddd', 'dddddd', 'ddd', 1, '2014-04-03 09:52:02', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_user`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_acl_role_id` int(10) NOT NULL,
+  `active` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `mds_user`
+--
+
+INSERT INTO `mds_user` (`id`, `fullname`, `email`, `phone`, `username`, `password`, `user_acl_role_id`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin@manhduc.net', '0988288688', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 1, 1, '2014-04-02 00:00:00', '2014-04-03 11:15:29'),
+(2, 'Demo', 'demo@gmail.com', '1111111', 'demo', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, 1, '2014-04-02 23:46:26', '2014-04-03 08:40:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_user_acl`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_user_acl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_acl_permission_id` int(11) NOT NULL,
+  `user_acl_role_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_acl_permission_user_acl_role` (`user_acl_role_id`),
+  KEY `fk_user_acl_user_acl_permission` (`user_acl_permission_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data for table `mds_user_acl`
+--
+
+INSERT INTO `mds_user_acl` (`id`, `user_acl_permission_id`, `user_acl_role_id`) VALUES
+(1, 13, 2),
+(2, 14, 2),
+(3, 15, 2),
+(4, 40, 1),
+(5, 16, 2),
+(9, 1, 2),
+(10, 2, 2),
+(11, 4, 2),
+(12, 5, 2),
+(13, 6, 2),
+(14, 7, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_user_acl_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_user_acl_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `user_acl_resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_acl_permission_user_acl_resource` (`user_acl_resource_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=41 ;
+
+--
+-- Dumping data for table `mds_user_acl_permission`
+--
+
+INSERT INTO `mds_user_acl_permission` (`id`, `permission`, `user_acl_resource_id`) VALUES
+(1, 'user/list', 1),
+(2, 'user/create', 1),
+(4, 'user/delete', 1),
+(5, 'config/system', 1),
+(6, 'config/general', 1),
+(7, 'config/server', 1),
+(8, 'config/update', 1),
+(9, 'role/list', 1),
+(10, 'role/create', 1),
+(11, 'role/edit', 1),
+(12, 'role/delete', 1),
+(13, 'media', 2),
+(14, 'document', 2),
+(15, 'translation', 2),
+(16, 'view/list', 3),
+(17, 'view/create', 3),
+(18, 'view/edit', 3),
+(19, 'view/delete', 3),
+(20, 'layout/list', 3),
+(21, 'layout/create', 3),
+(22, 'layout/edit', 3),
+(23, 'layout/delete', 3),
+(24, 'datatype/list', 3),
+(25, 'datatype/create', 3),
+(26, 'datatype/edit', 3),
+(27, 'datatype/delete', 3),
+(28, 'document-type/list', 3),
+(29, 'document-type/create', 3),
+(30, 'document-type/edit', 3),
+(31, 'document-type/delete', 3),
+(32, 'script/list', 3),
+(35, 'script/delete', 3),
+(36, 'list', 4),
+(37, 'install', 4),
+(40, 'Blog', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_user_acl_resource`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_user_acl_resource` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resource` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `mds_user_acl_resource`
+--
+
+INSERT INTO `mds_user_acl_resource` (`id`, `resource`) VALUES
+(1, 'settings'),
+(2, 'content'),
+(3, 'development'),
+(4, 'modules'),
+(5, 'stats'),
+(6, 'plugin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mds_user_acl_role`
+--
+
+CREATE TABLE IF NOT EXISTS `mds_user_acl_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `mds_user_acl_role`
+--
+
+INSERT INTO `mds_user_acl_role` (`id`, `name`, `description`) VALUES
+(1, 'Admin', 'demo role'),
+(2, 'Writer', 'Hộ cái'),
+(3, 'User', 'username');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `mds_user_acl`
+--
+ALTER TABLE `mds_user_acl`
+  ADD CONSTRAINT `fk_user_acl_permission_user_acl_role` FOREIGN KEY (`user_acl_role_id`) REFERENCES `mds_user_acl_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_acl_user_acl_permission` FOREIGN KEY (`user_acl_permission_id`) REFERENCES `mds_user_acl_permission` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `mds_user_acl_permission`
+--
+ALTER TABLE `mds_user_acl_permission`
+  ADD CONSTRAINT `fk_user_acl_permission_user_acl_resource` FOREIGN KEY (`user_acl_resource_id`) REFERENCES `mds_user_acl_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

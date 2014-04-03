@@ -1,0 +1,74 @@
+<form action="<?php echo $this->form->getAttribute('action'); ?>" method="POST" class='form-horizontal form-bordered'>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('username')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="username" id="username" value="<?php echo $this->form->get('username')->getValue();?>" placeholder="<?php echo $this->form->get('username')->getLabel();?> " class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('username'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label for="password" class="control-label"><?php echo $this->form->get('password')->getLabel();?></label>
+        <div class="controls">
+            <input type="password" name="password" id="password" value="<?php echo $this->form->get('password')->getValue();?>" placeholder="<?php echo $this->form->get('password')->getLabel();?>" class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('password'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            <?php echo $this->escapeHtml($this->translate($this->form->get('user_acl_role_id')->getLabel())); ?>:
+        </label>
+        <div class="controls">
+            <select  class="span4" name="user_acl_role_id" data-placeholder="Choose a Category" tabindex="1">
+                <?php $options = $this->form->get('user_acl_role_id')->getValueOptions(); ?>
+                <?php foreach ($options as $option_id => $option_value): ?>
+                    <option <?php if ($option_id == $this->form->getValue('user_acl_role_id')): ?>selected="selected" <?php endif; ?>
+                            label="<?php echo $this->escapeHtml($this->translate($option_value)); ?>"
+                            value="<?php echo (int) $option_id; ?>">
+                        <?php echo $this->escapeHtml($this->translate($option_value)); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+          <span class="help-inline">
+           <?php echo $this->formElementErrors($this->form->get('user_acl_role_id'), array('class' => 'text-danger')); ?>
+         </span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('fullname')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="fullname" id="fullname" value="<?php echo $this->form->get('fullname')->getValue();?>" placeholder="<?php echo $this->form->get('fullname')->getLabel();?>" class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('fullname'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('email')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="email" id="email" value="<?php echo $this->form->get('email')->getValue();?>" placeholder="<?php echo $this->form->get('email')->getLabel();?>" class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('email'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('phone')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="phone" id="phone" value="<?php echo $this->form->get('phone')->getValue();?>" placeholder="<?php echo $this->form->get('phone')->getLabel();?>" class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('phone'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('active')->getLabel())); ?></label>
+        <div class="controls">
+            <?php
+            $element = $this->form->get('active');
+            ?>
+            <?php echo $this->formRadio($element,\Zend\Form\View\Helper\FormRadio::LABEL_PREPEND);?>
+            <?php echo $this->formElementErrors($this->form->get('active'), array('class' => 'text-danger')); ?>
+
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn">Cancel</button>
+    </div>
+</form>

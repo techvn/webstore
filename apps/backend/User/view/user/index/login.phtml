@@ -1,0 +1,15 @@
+<form action="<?php echo $this->form->getAttribute('action'); ?>" method='post'>
+    <div class="email">
+        <input type="text" name='username' placeholder="Username" value="<?php echo $this->form->get('username')->getValue();?>" class='input-block-level'>
+        <?php echo $this->formElementErrors($this->form->get('username'), array('class' => 'text-danger')); ?>
+    </div>
+
+    <div class="pw">
+        <input type="password" name="password" placeholder="Password" class='input-block-level'>
+        <?php echo $this->formElementErrors($this->form->get('password'), array('class' => 'text-danger')); ?>
+    </div>
+    <div class="submit">
+        <input name="redirect" id="redirect" type="hidden" value="<?php echo $this->escapeHtml($this->form->get('redirect')->getValue()); ?>">
+        <input type="submit" value="Login" class='btn btn-primary'>
+    </div>
+</form>

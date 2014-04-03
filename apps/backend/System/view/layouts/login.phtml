@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf8">
+	<?php echo $this->headTitle($this->translate('MDS'))->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+   <!-- Apple devices fullscreen -->
+    <?php echo $this->headMeta()->appendName('apple-mobile-web-app-capable', 'yes')?>
+    <!-- Apple devices fullscreen -->  
+    <?php echo $this->headMeta()->appendName('apple-mobile-web-app-status-bar-style', 'black-translucent') ?>
+	
+    <!-- Bootstrap styles -->
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/temp/private/default/assets/img/favicon.ico'))
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/themes.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/style.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/bootstrap-responsive.min.css')
+                    ->prependStylesheet($this->basePath() . '/temp/private/default/assets/css/bootstrap.min.css') ?>
+
+	
+	    <!-- Scripts -->
+    <?php echo $this->headScript()
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/eakroko.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/bootstrap.min.js')
+                    ->prependFile($this->basePath() . '/temp/private/default/assets/js/jquery.min.js')
+    ; ?>
+	
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="<?php echo $this->basePath() . '/temp/private/default/assets/';?>img/apple-touch-icon-precomposed.png" />
+
+</head>
+<body class='login'>
+	<div class="wrapper">
+		<h1><a href="index.html"><img src="<?php echo $this->basePath() . '/temp/private/default/assets/';?>img/logo-big.png" alt="" class='retina-ready' width="59" height="49">MDS</a></h1>
+		<div class="login-body">
+			<h2>Login</h2>
+            <?php echo $this->content; ?>
+            <br>
+			<!-- <div class="forget">
+				<a href="#"><span>Forgot password?</span></a>
+			</div> -->
+		</div>
+	</div>
+</body>
+
+</html>
