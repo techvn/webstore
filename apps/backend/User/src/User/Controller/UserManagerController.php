@@ -23,7 +23,7 @@ class UserManagerController extends Action{
               $order_by,
               $order ,
               $page,
-              10,
+              1,
               7
         );
         return array(
@@ -47,6 +47,7 @@ class UserManagerController extends Action{
                     $userModel->setPassword($post['password']);
                     if($userModel->setEmail($post['email'])){
                         $userModel->save();
+                        $this->flashMessenger()->addSuccessMessage('This view has been create');
                     }
                 }
             }
@@ -71,6 +72,7 @@ class UserManagerController extends Action{
                 }
                 if($userModel->setEmail($post['email'])){
                     $userModel->save();
+                    $this->flashMessenger()->addSuccessMessage('This view has been edit');
                 }
             }
             return array('form'=>$form);
@@ -82,8 +84,21 @@ class UserManagerController extends Action{
             if($userModel){
                 $userModel->delete();
             }
+            $this->flashMessenger()->addSuccessMessage('This view has been delete');
             if($redirect)
                 return $this->redirect()->toUrl(base64_decode($redirect));
             return $this->redirect()->toRoute('user/user-manager',array('action'=>'index'));
         }
+    public function update_groupAction(){
+        $request = $this->getRequest();
+        $response = $this->getResponse();
+        $post=array('data'=>false);
+        if($this->getRequest()->isXmlHttpRequest()){
+            $post = $request->getPost();
+            $userModel = \User\Libs\Model::fromId($post['pk']);
+            $userModel->update_columns(array('user_acl_role_id'=>$post['value']));
+        }
+        $response->setContent(\Zend\Json\Json::encode($post));
+        return $response;
+    }
 }

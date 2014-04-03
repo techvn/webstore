@@ -1,7 +1,14 @@
+<link rel="stylesheet" href="<?php echo $this->serverUrl("/temp/private/default/assets/css/plugins/xeditable/bootstrap-editable.css")?>">
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/bootbox/jquery.bootbox.js")?>"></script>
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/momentjs/jquery.moment.js")?>"></script>
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/mockjax/jquery.mockjax.js")?>"></script>
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/bootstrap-editable.min.js")?>"></script>
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/demo.js")?>"></script>
+<script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/address.js")?>"></script>
 
 <div class="box">
     <div class="box-content nopadding">
-        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered dataTable dataTable-noheader dataTable-nofooter" id="DataTables_Table_1">
+        <div><table class="table table-nomargin table-bordered">
                 <thead>
                     <tr role="row">
                         <th class="sorting"><?php echo $this->escapeHtml($this->translate('FullName')); ?></th>
@@ -25,10 +32,21 @@
                             <a style="color:#000000;" href="<?php echo $this->url('user/user-manager', array('action'=>'edit','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="edit-line">
                                 <?php echo $val['fullname']; ?>
                             </a>
+
+
                         </td>
 
                         <?php $role = \User\Libs\Role\Model::fromId($val['user_acl_role_id'])?>
-                        <td class='sorting_1'><?php echo $role->getName();?></td>
+                        <td class='sorting_1'>
+                            <a href="#"
+                               id="sex1"
+                               data-type="select"
+                               data-pk="<?php echo $val['id']?>"
+                               data-value=""
+                               data-original-title="Select sex"
+                               class="editable editable-click editable-open"
+                               style="color: gray;"><?php echo $role->getName();?></a>
+                        </td>
                         <td class='hidden-350'><?php echo $this->escapeHtml($val['username']); ?></td>
                         <td class='hidden-1024'><?php echo $this->escapeHtml($val['created_at']); ?></td>
                         <td class='hidden-480'><?php  echo $this->escapeHtml($val['updated_at']); ?></td>
@@ -48,9 +66,43 @@
                 }
                 ?>
                 </tbody></table>
-            <div class="dataTables_info" id="DataTables_Table_2_info">Showing <span>1</span> to <span>10</span> of <span>18</span> entries</div>
-            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_2_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_2_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_2_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a><a tabindex="0" class="paginate_button">2</a></span><a tabindex="0" class="next paginate_button" id="DataTables_Table_2_next">Next</a><a tabindex="0" class="last paginate_button" id="DataTables_Table_2_last">Last</a></div>
+<!--            <div class="dataTables_info" id="DataTables_Table_2_info">Showing <span>1</span> to <span>10</span> of <span>18</span> entries</div>-->
+<!--            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_2_paginate">-->
+                <?php echo $this->paginationControl($this->paginator,
+                    'Sliding',
+                    'layout/system/paginator', array('route' => 'user/user-manager'));
+                ?>
+<!--            </div>-->
 
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        $('#sex1').editable({
+            url: '<?php echo $this->url('user/role-manager',array('action'=>'ajax'));?>',
+            prepend: "not selected",
+            source: <?php
+                     $user = new \User\Libs\Role\Collection();
+                     echo "[";
+                     $html="";
+                     foreach($user->getRoles() as $row){
+                        $html .= '{value:'.$row->getId().',text:"'.$row->getName().'"},';
+                     }
+                     echo substr($html,0,-1);
+                     echo "]";
+            ?>,
+            display: function(value, sourceData) {
+                var colors = {"": "gray", 1: "green", 2: "blue"},
+                    elem = $.grep(sourceData, function(o){return o.value == value;});
+
+                if(elem.length) {
+                    $(this).text(elem[0].text).css("color", colors[value]);
+                } else {
+                    $(this).empty();
+                }
+            },
+            success:function(data){
+                console.log(data);
+            }
+        });
+</script>

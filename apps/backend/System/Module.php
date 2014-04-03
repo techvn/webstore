@@ -23,12 +23,24 @@ class Module extends Mvc\Module
         if (isset($config['db'])) {
             $dbAdapter = $this->initDatabase($config);
         }
-        //$this->initSetLayout($e);
+        $this->initSetLayout($e);
     }
     public function initDatabase(array $config)
     {
         $dbAdapter = new DbAdapter($config['db']);
         GlobalAdapterFeature::setStaticAdapter($dbAdapter);
+    }
+    private function getLayout($_array,$key){
+        $rs = 'Front';
+        while(true){
+            $value = $_array[$key];
+            if(strpos($value,'/')){
+                $rs = $key;
+                break;
+            }
+            $key = $_array[$key];
+        }
+        return $rs;
     }
     public function initSetLayout(EventInterface $e){
         $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
@@ -36,11 +48,8 @@ class Module extends Mvc\Module
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
             $config          = $e->getApplication()->getServiceManager()->get('config');
-            if (isset($config['module_layouts'][$moduleNamespace])) {
-                $controller->layout($config['module_layouts'][$moduleNamespace]);
-            }else{
-                $controller->layout('layout/Front');
-            }
+            $moduleNamespace = $this->getLayout($config['module_layouts'],$moduleNamespace);
+            $controller->layout($config['module_layouts'][$moduleNamespace]);
         }, 100);
     }
 }

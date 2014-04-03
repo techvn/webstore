@@ -18,7 +18,7 @@ class IndexController extends Action
 {
     public function indexAction()
     {
-        $this->layout()->setTemplate('layout/front.phtml');
+        //$this->layout()->setTemplate('layout/front.phtml');
         return new ViewModel();
     }
 }

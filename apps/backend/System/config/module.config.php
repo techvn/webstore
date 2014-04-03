@@ -82,7 +82,8 @@ return array(
         		'system' => __DIR__ . '/../view',
         ),
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layouts/priv.phtml',
+            'layout/system'           => __DIR__ . '/../view/layouts/priv.phtml',
+            'layout/system/paginator' => __DIR__.'/../view/layouts/comp/paginator.phtml',
             'pageheader'           => __DIR__ . '/../view/layouts/comp/pageheader.phtml',
             'breadcrumbs'           => __DIR__ . '/../view/layouts/comp/breadcrumbs.phtml',
             'layout/system/login'           => __DIR__ . '/../view/layouts/login.phtml',

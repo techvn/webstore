@@ -120,7 +120,23 @@ class Model extends AbstractTable
 
         return false;
     }
-
+    public function update_columns($arraySave){
+        $this->events()->trigger(__CLASS__, 'before.save', null, array('object' => $this));
+        try {
+            $id = $this->getId();
+            if (empty($id)) {
+                $this->insert($arraySave);
+                $this->setId($this->getLastInsertId());
+            } else {
+                $this->update($arraySave, array('id' => $this->getId()));
+            }
+            $this->events()->trigger(__CLASS__, 'after.save', null, array('object' => $this));
+            return $this->getId();
+        } catch (\Exception $e) {
+            $this->events()->trigger(__CLASS__, 'after.save.failed', null, array('object' => $this));
+            throw new \MDS\Exception($e->getMessage(), $e->getCode(), $e);
+        }
+    }
     /**
      * Set user password
      *

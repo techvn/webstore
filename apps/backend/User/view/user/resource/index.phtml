@@ -1,0 +1,50 @@
+<div class="box">
+    <div class="box-content nopadding">
+        <div class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered dataTable dataTable-noheader dataTable-nofooter">
+                <thead>
+                <tr role="row">
+                    <th class="sorting"><?php echo $this->escapeHtml($this->translate('ID')); ?></th>
+                    <th class="hidden-350 sorting"><?php echo $this->escapeHtml($this->translate('Resource')); ?></th>
+                    <th class="hidden-350 sorting"><?php echo $this->escapeHtml($this->translate('Action')); ?></th>
+                </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                <?php
+                $i=1;
+                foreach($this->paginator as $val){
+                    $class = ($i%2!=0)?'old':'even';
+                    ?>
+                    <tr class='<?php echo $class;?>'>
+                        <td>
+                            <?php echo $val['id'];?>
+                        </td>
+                        <td class=''>
+                            <a style="color:#000000;" href="<?php echo $this->url('user/resource-manager', array('action'=>'edit','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="edit-line">
+                                <?php echo $val['resource']; ?>
+                            </a>
+                            <a href="#" id="username" data-type="text" data-pk="1" data-original-title="Enter username" class="editable editable-click">superuser</a>
+                        </td>
+                        <td class='hidden-480'>
+
+                            <a href="<?php echo $this->url('user/resource-manager', array('action'=>'edit','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="edit-line">
+                                <button class="btn btn-danger"> <i class="icon-edit"></i></button>
+                            </a>
+
+                            <a href="<?php echo $this->url('user/resource-manager', array('action'=>'delete','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="delete-line">
+                                <button class="btn btn-danger"> <i class="icon-trash"></i></button>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                    $i++;
+                }
+                ?>
+                </tbody>
+            </table>
+            <?php echo $this->paginationControl($this->paginator,
+                'Sliding',
+                'layout/system/paginator', array('route' => 'user/resource-manager'));
+            ?>
+        </div>
+    </div>
+</div>

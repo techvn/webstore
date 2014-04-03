@@ -75,7 +75,7 @@ class Collection extends AbstractTable
     {
         if (empty($this->permissions) or $forceReload === true) {
             $select = new Select();
-            $select->from('user_acl_permission')
+            $select->from('mds_user_acl_permission')
                 ->columns(
                     array(
                         'id',
@@ -83,8 +83,8 @@ class Collection extends AbstractTable
                     ),
                     true
                 )->join(
-                    'user_acl_resource',
-                    'user_acl_resource.id = user_acl_permission.user_acl_resource_id',
+                    'mds_user_acl_resource',
+                    'mds_user_acl_resource.id = mds_user_acl_permission.user_acl_resource_id',
                     array('resource')
                 );
 
@@ -102,32 +102,5 @@ class Collection extends AbstractTable
         }
 
         return $this->permissions;
-    }
-    public function bildPagination($order_by,$order=false,$page,$_itemsPerPage=1,$pageRange = 7){
-        $order_by = $order_by ? 'user_acl_permission.'.$order_by : 'user_acl_permission.id';
-        $order = $order ? $order : Select::ORDER_ASCENDING;
-        $page = $page ? (int) $page : 1;
-
-        $select = new Select();
-        $select->order($order_by . ' ' . $order);
-        $select->from('user_acl_permission')
-                ->columns(
-                    array(
-                        'id',
-                        'permission'
-                    ),
-                    true
-                )->join(
-                    'user_acl_resource',
-                    'user_acl_resource.id = user_acl_permission.user_acl_resource_id',
-                    array('resource')
-        );
-        $albums = $this->fetchAll($select,null,\PDO::FETCH_OBJ);
-        $itemsPerPage = $_itemsPerPage;
-        $paginator = new Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($albums));
-        $paginator->setCurrentPageNumber($page)
-            ->setItemCountPerPage($itemsPerPage)
-            ->setPageRange($pageRange);
-        return $paginator;
     }
 }

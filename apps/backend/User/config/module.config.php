@@ -13,6 +13,9 @@ return array(
         'invokables' => array(
             'User\Controller\Index' => 'User\Controller\IndexController',
             'User\Controller\UserManager' => 'User\Controller\UserManagerController',
+            'User\Controller\Role'=>'User\Controller\RoleController',
+            'User\Controller\Permission' => 'User\Controller\PermissionController',
+            'User\Controller\Resource'=>'User\Controller\ResourceController'
         ),
     ),
     'router' => array(
@@ -88,7 +91,7 @@ return array(
                         'type'    => 'Segment',
                         'may_terminate' => true,
                         'options' => array(
-                            'route'    => '/user-manager[/:action][/:id][/:redirect][/page/:page][/order_by/:order_by][/:order]',
+                            'route'    => '/user-manager[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
                             'constraints' => array(
                                 'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id'     => '[0-9]+',
@@ -98,6 +101,60 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'User\Controller\UserManager',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'resource-manager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/resource[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                            'constraints' => array(
+                                'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                                'page' => '[0-9]+',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order' => 'ASC|DESC',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'User\Controller\Resource',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'role-manager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/role[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                            'constraints' => array(
+                                'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                                'page' => '[0-9]+',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order' => 'ASC|DESC',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'User\Controller\Role',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'permission-manager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/permission[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                            'constraints' => array(
+                                'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                                'page' => '[0-9]+',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order' => 'ASC|DESC',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'User\Controller\Permission',
                                 'action'     => 'index',
                             ),
                         ),
