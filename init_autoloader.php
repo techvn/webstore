@@ -15,7 +15,8 @@
  * the use of composer completely optional. This setup should work fine for
  * most users, however, feel free to configure autoloading however you'd like.
  */
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Composer autoloading
 if (file_exists('library/autoload.php')) {
     $loader = include 'library/autoload.php';

@@ -9,8 +9,7 @@
 namespace User\Controller;
 use MDS\Mvc\Controller\Action;
 class UserManagerController extends Action{
-    
-   // protected $aclPage = array('resource' => 'content', 'permission' => 'document');
+        protected $aclPage = array('resource' => 'content', 'permission' => 'document');
         public function indexAction(){
         $coll_user = new \User\Libs\Collection();
         $order_by = $this->params()->fromRoute('order_by');
@@ -51,9 +50,12 @@ class UserManagerController extends Action{
             }
             return array('form'=>$form);
         }
+
         public function editAction(){
             $id = $this->params()->fromRoute('id');
             $userModel = \User\Libs\Model::fromId($id);
+            $redirect = $this->params()->fromRoute('redirect');
+
             if(!$userModel){
                 return $this->redirect()->toRoute('user/user-manager',array('action'=>'index'));
             }
@@ -72,9 +74,13 @@ class UserManagerController extends Action{
                     $userModel->save();
                     $this->flashMessenger()->addSuccessMessage('This view has been edit');
                 }
+                if(!empty($redirect))
+                    return $this->redirect()->toUrl(base64_decode($redirect));
+                return $this->redirect()->toRoute('user/user-manager',array('action'=>'index'));
             }
             return array('form'=>$form);
         }
+
         public function deleteAction(){
             $id = $this->params()->fromRoute('id');
             $redirect = $this->params()->fromRoute('redirect');
@@ -83,7 +89,7 @@ class UserManagerController extends Action{
                 $userModel->delete();
             }
             $this->flashMessenger()->addSuccessMessage('This view has been delete');
-            if($redirect)
+            if(!empty($redirect))
                 return $this->redirect()->toUrl(base64_decode($redirect));
             return $this->redirect()->toRoute('user/user-manager',array('action'=>'index'));
         }

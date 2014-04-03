@@ -5,7 +5,6 @@
 <script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/bootstrap-editable.min.js")?>"></script>
 <script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/demo.js")?>"></script>
 <script src="<?php echo $this->serverUrl("/temp/private/default/assets/js/plugins/xeditable/address.js")?>"></script>
-
 <div class="box">
     <div class="box-content nopadding">
         <div><table class="table table-nomargin table-bordered">
@@ -26,16 +25,12 @@
                     $class = ($i%2!=0)?'old':'even';
                    // var_dump($val->getFullname());
                     ?>
-
                     <tr class='<?php echo $class;?>'>
                         <td class=''>
                             <a style="color:#000000;" href="<?php echo $this->url('user/user-manager', array('action'=>'edit','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="edit-line">
                                 <?php echo $val['fullname']; ?>
                             </a>
-
-
                         </td>
-
                         <?php $role = \User\Libs\Role\Model::fromId($val['user_acl_role_id'])?>
                         <td class='sorting_1'>
                             <a href="#"
@@ -73,7 +68,6 @@
                     'layout/system/paginator', array('route' => 'user/user-manager'));
                 ?>
 <!--            </div>-->
-
         </div>
     </div>
 </div>

@@ -1,12 +1,13 @@
 
 <div class="box">
     <div class="box-content nopadding">
-        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered dataTable dataTable-noheader dataTable-nofooter" id="DataTables_Table_1">
+        <div class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered">
                 <thead>
                     <tr role="row">
-                        <th class="sorting"><?php echo $this->escapeHtml($this->translate('ID')); ?></th>
-                        <th class="sorting_desc"><?php echo $this->escapeHtml($this->translate('Name')); ?></th>
-                        <th class="hidden-350 sorting"><?php echo $this->escapeHtml($this->translate('Description')); ?></th>
+                        <th class="sorting"><?php echo $this->escapeHtml($this->translate('Id')); ?></th>
+                        <th class="sorting"><?php echo $this->escapeHtml($this->translate('Name')); ?></th>
+                        <th class="sorting_desc"><?php echo $this->escapeHtml($this->translate('Des')); ?></th>
+                        <th class="hidden-350 sorting"><?php echo $this->escapeHtml($this->translate('Action')); ?></th>
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -14,9 +15,9 @@
                 $i=1;
                 foreach($this->paginator as $val){
                     $class = ($i%2!=0)?'old':'even';
-                    // var_dump($val->getFullname());
-                    ?>
-                    <tr class='<?php echo $class;?>'>
+                ?>
+                <tr class='<?php echo $class;?>'>
+                        <td><?php echo $val['id'];?></td>
                         <td class=''>
                             <a style="color:#000000;" href="<?php echo $this->url('user/role-manager', array('action'=>'edit','id' => $val['id'],'redirect'=>$this->redirect)); ?>" class="edit-line">
                                 <?php echo $val['name']; ?>
@@ -32,16 +33,17 @@
                                 <button class="btn btn-danger"> <i class="icon-trash"></i></button>
                             </a>
                         </td>
-                    </tr>
-
-                    <?php
+                 </tr>
+                <?php
                     $i++;
-                }
+                  }
                 ?>
-                </tbody></table>
-            <div class="dataTables_info" id="DataTables_Table_2_info">Showing <span>1</span> to <span>10</span> of <span>18</span> entries</div>
-            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_2_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_2_first">First</a><a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_2_previous">Previous</a><span><a tabindex="0" class="paginate_active">1</a><a tabindex="0" class="paginate_button">2</a></span><a tabindex="0" class="next paginate_button" id="DataTables_Table_2_next">Next</a><a tabindex="0" class="last paginate_button" id="DataTables_Table_2_last">Last</a></div>
-
+                </tbody>
+            </table>
+            <?php echo $this->paginationControl($this->paginator,
+                    'Sliding',
+                    'layout/system/paginator', array('route' => 'user/role-manager'));
+            ?>
         </div>
     </div>
 </div>

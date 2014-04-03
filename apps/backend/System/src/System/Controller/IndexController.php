@@ -13,7 +13,6 @@ class IndexController extends Action
     protected $aclPage = array('resource' => 'content', 'permission' => 'document');
     public function indexAction()
     {
-
         return array();
     }
 }
