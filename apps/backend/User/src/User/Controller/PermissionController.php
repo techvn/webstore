@@ -10,7 +10,6 @@ namespace User\Controller;
 use MDS\Mvc\Controller\Action;
 class PermissionController extends Action{
     public function indexAction(){
-
         $coll = new \User\Libs\Permission\Collection();
         $order_by = $this->params()->fromRoute('order_by');
         $order = $this->params()->fromRoute('order');

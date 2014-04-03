@@ -11,14 +11,12 @@ use MDS\Mvc\Controller\Action;
 class UserManagerController extends Action{
     
    // protected $aclPage = array('resource' => 'content', 'permission' => 'document');
-    
         public function indexAction(){
         $coll_user = new \User\Libs\Collection();
         $order_by = $this->params()->fromRoute('order_by');
         $order = $this->params()->fromRoute('order');
         $page = $this->params()->fromRoute('page');
         $redirect = base64_encode($this->getRequest()->getRequestUri());
-
         $paginator = $coll_user->bildPagination(
               $order_by,
               $order ,
@@ -89,16 +87,16 @@ class UserManagerController extends Action{
                 return $this->redirect()->toUrl(base64_decode($redirect));
             return $this->redirect()->toRoute('user/user-manager',array('action'=>'index'));
         }
-    public function update_groupAction(){
-        $request = $this->getRequest();
-        $response = $this->getResponse();
-        $post=array('data'=>false);
-        if($this->getRequest()->isXmlHttpRequest()){
-            $post = $request->getPost();
-            $userModel = \User\Libs\Model::fromId($post['pk']);
-            $userModel->update_columns(array('user_acl_role_id'=>$post['value']));
+        public function ajaxAction(){
+            $request = $this->getRequest();
+            $response = $this->getResponse();
+            $post=array('data'=>false);
+            if($this->getRequest()->isXmlHttpRequest()){
+                $post = $request->getPost();
+                $userModel = \User\Libs\Model::fromId($post['pk']);
+                $userModel->update_columns(array('user_acl_role_id'=>$post['value']));
+            }
+            $response->setContent(\Zend\Json\Json::encode($post));
+            return $response;
         }
-        $response->setContent(\Zend\Json\Json::encode($post));
-        return $response;
-    }
 }

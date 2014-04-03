@@ -79,7 +79,7 @@
 </div>
 <script type="text/javascript">
         $('#sex1').editable({
-            url: '<?php echo $this->url('user/role-manager',array('action'=>'ajax'));?>',
+            url: '<?php echo $this->url('user/user-manager',array('action'=>'ajax'));?>',
             prepend: "not selected",
             source: <?php
                      $user = new \User\Libs\Role\Collection();
