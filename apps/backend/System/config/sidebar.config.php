@@ -1,5 +1,20 @@
 <?php
 return array (
+    'Dashboard' =>
+    array (
+        'id' => '1',
+        'name' => 'Dashboard',
+        'icon' => 'icon-archive',
+        'label' => 'Dashboard',
+        'route' => 'system',
+        'params' =>
+        array (
+
+        ),
+        'resource' => 'content',
+        'pages' =>array (
+        ),
+    ),
     'User' =>
         array (
             'id' => '1',
@@ -27,7 +42,82 @@ return array (
                     'pages' =>array (
 
                     ),
+                ),
+                 array (
+                     'id' => '2',
+                     'name' => 'Permssion',
+                     'icon' => 'icon-archive',
+                     'label' => 'Permssion',
+                     'route' => 'user/permission-manager',
+                     'params' =>array (
+                         'action' => 'index'
+                     ),
+                     'resource' => 'settings',
+                     'permission'=>'user/list',
+                     'pages' =>array (
+
+                     ),
+                 ),
+                array (
+                    'id' => '2',
+                    'name' => 'Role',
+                    'icon' => 'icon-archive',
+                    'label' => 'Role',
+                    'route' => 'user/role-manager',
+                    'params' =>array (
+                        'action' => 'index'
+                    ),
+                    'resource' => 'settings',
+                    'permission'=>'user/list',
+                    'pages' =>array (
+
+                    ),
                 )
             ),
         ),
+    'Post' =>
+    array (
+        'id' => '1',
+        'name' => 'Post',
+        'icon' => 'icon-archive',
+        'label' => 'Post',
+        'route' => 'Posts',
+        'params' =>
+        array (
+            'action' => 'index'
+        ),
+        'resource' => 'content',
+        'pages' =>array (
+            array (
+                'id' => '1',
+                'name' => 'Articles',
+                'icon' => 'icon-archive',
+                'label' => 'Articles',
+                'route' => 'posts/articles',
+                'params' =>array (
+                    'action' => 'index'
+                ),
+                'resource' => 'settings',
+                'permission'=>'user/list',
+                'pages' =>array (
+
+                ),
+            ),
+            array (
+                'id' => '1',
+                'name' => 'Categrory',
+                'icon' => 'icon-archive',
+                'label' => 'Categrory',
+                'route' => 'posts/category',
+                'params' =>array (
+                    'action' => 'index'
+                ),
+                'resource' => 'settings',
+                'permission'=>'user/list',
+                'pages' =>array (
+
+                ),
+            )
+        ),
+    ),
 );

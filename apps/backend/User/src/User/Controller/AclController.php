@@ -14,7 +14,6 @@ use Zend\View\Model\ViewModel;
 class AclController extends Action
 {
     //protected $aclPage = array('resource' => 'content', 'permission' => 'media');
-
     public function indexAction()
     {
         if ($this->getRequest()->isXmlHttpRequest()) {
@@ -63,39 +62,5 @@ class AclController extends Action
     {
         return array();
     }
-    public function ajaxAction(){
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $request = $this->getRequest();
-            $post = $this->getRequest()->getPost();
-            $response = $this->getResponse();
-            // base64_decode
-            $data = base64_decode($post['data']);
-          //  $data_explode = explode('-', $data);
-//            $object = \User\Libs\Acl\Model::check($data_explode[1],$data_explode[0]);
-//
-//            if ($data_explode[2]==0) {
-//                if ($object) {
-//                    // $object->delete();
-//                }
-//            }else{
-//                if (!$object) {
-//                    $model = new \User\Libs\Acl\Model();
-//                    $model->setData(array(
-//                            'user_acl_permission_id'=>$data_explode[1],
-//                            'user_acl_role_id'=>$data_explode[0])
-//                    );
-//                    $model->setOrigData();
-//                    // $model->save();
-//                }
-//            }
-            // $router = new \TrungDm\System\Core\Routers();
-            $response->setContent(\Zend\Json\Json::encode(
-                    array(
-                        "router"=>true,
-                        "data"=> $data_explode
-                    ))
-            );
-            return $response;
-        }
-    }
+
 }

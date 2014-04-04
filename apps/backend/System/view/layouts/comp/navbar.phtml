@@ -53,17 +53,17 @@ function get_resource_sub($Resources,$Resources_Sub){
 }
 ?>
 <ul class='main-nav'>
-     <li class='active'>
-		<a href="<?php echo $this->url('system') ?>">
-			<i class="icon-home"></i>
-			<span>Dashboard</span>
-		</a>
-	</li>
+<!--     <li class='active'>-->
+<!--		<a href="--><?php //echo $this->url('system') ?><!--">-->
+<!--			<i class="icon-home"></i>-->
+<!--			<span>Dashboard</span>-->
+<!--		</a>-->
+<!--	</li>-->
      <?php foreach ($this->container as $page): ?>
          <?php $Resources =$page->getResource();?>
          <?php $Resources =get_resource($Resources);?>
 
-	<li>
+	<li <?php echo ($page->isActive() ? 'class="active"' : ''); ?>>
 		<a href="<?php echo (count($page->pages))?"#":$page->getHref()?>" data-toggle="dropdown" class='dropdown-toggle'>
 			<i class="icon-edit"></i>
 			<span><?php echo $page->getLabel();?></span>
