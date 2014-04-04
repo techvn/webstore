@@ -32,4 +32,13 @@ class ResourceController extends Action{
             'redirect'=>$redirect
         );
     }
+    public function createAction(){
+
+    }
+    public function editAction(){
+
+    }
+    public function deleteAction(){
+
+    }
 }

@@ -13,5 +13,27 @@ class Module extends Mvc\Module
 {
     protected $directory = __DIR__;
     protected $namespace = __NAMESPACE__;
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'acl'   => function ($pm) {
+                    return new \User\Helper\Acl(
+                        $pm->getServiceLocator()->get('auth')->getIdentity()
+                    );
+                },
+                'acl_check'   => function ($pm) {
+                    return new \User\Helper\AclCheck(
+                        $pm->getServiceLocator()->get('auth')->getIdentity()
+                    );
+                },
+                'user_system'   => function ($pm) {
+                    return new \User\Helper\UserSystem(
+                        $pm->getServiceLocator()->get('auth')->getIdentity()
+                    );
+                }
+            )
+        );
+    }
 }
 

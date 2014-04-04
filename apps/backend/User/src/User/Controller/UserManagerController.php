@@ -9,7 +9,7 @@
 namespace User\Controller;
 use MDS\Mvc\Controller\Action;
 class UserManagerController extends Action{
-        protected $aclPage = array('resource' => 'content', 'permission' => 'document');
+        protected $aclPage = array('resource' => 'settings', 'permission' => 'user');
         public function indexAction(){
         $coll_user = new \User\Libs\Collection();
         $order_by = $this->params()->fromRoute('order_by');

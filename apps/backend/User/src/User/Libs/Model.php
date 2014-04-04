@@ -84,7 +84,7 @@ class Model extends AbstractTable
 
             return true;
         }
-        $this->events()->trigger(__CLASS__, 'after.auth.failed', null, array('object' => $this, 'login' => $login));
+        $this->events()->trigger(__CLASS__, 'after.auth.failed', null, array('object' => $this, 'login' => $username));
         return false;
     }
 

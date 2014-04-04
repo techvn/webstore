@@ -1,0 +1,45 @@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i><?php echo $rows->getName();?>
+                </h3>
+            </div>
+            <form action="" method="post">
+                <div class="box-content">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Group </th>
+                            <th> Permission </th>
+                            <th> Enabled/Disabled </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $fieldsets = $this->form->getFieldsets();?>
+                        <?php $i=1;?>
+                        <?php foreach ($fieldsets as $k=>$fieldset): ?>
+                            <?php foreach ($fieldset->getElements() as $element): ?>
+                                <?php $label = $element->getLabelAttributes();?>
+                                <tr>
+                                    <td><?php echo $i++;?></td>
+                                    <td>
+                                    <span class="label label-success">
+                                        <?php echo $label['group'];?>
+                                    </span>
+                                    </td>
+                                    <td><?php echo $label['value'];?></td>
+                                    <td><?php echo $this->formElement($element);?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <input type="submit" name="sub" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

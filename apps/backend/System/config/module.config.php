@@ -87,7 +87,7 @@ return array(
             'pageheader'           => __DIR__ . '/../view/layouts/comp/pageheader.phtml',
             'breadcrumbs'           => __DIR__ . '/../view/layouts/comp/breadcrumbs.phtml',
             'layout/system/login'           => __DIR__ . '/../view/layouts/login.phtml',
-            'navigation'           => __DIR__ . '/../view/layouts/comp/navigation.phtml',
+            'layout/system/navbar'           => __DIR__ . '/../view/layouts/comp/navbar.phtml',
             'menuleft'           => __DIR__ . '/../view/layouts/comp/menuleft.phtml',
             'messages'           => __DIR__ . '/../view/layouts/messages.phtml',
             'system/index/index' => __DIR__ . '/../view/system/index/index.phtml',

@@ -52,4 +52,13 @@ class Module extends Mvc\Module
             $controller->layout($config['module_layouts'][$moduleNamespace]);
         }, 100);
     }
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Navbar' => 'System\Navigation\Core\Navbar\MyNavbarFactory'
+            )
+        );
+    }
+
 }

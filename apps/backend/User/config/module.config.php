@@ -15,7 +15,8 @@ return array(
             'User\Controller\UserManager' => 'User\Controller\UserManagerController',
             'User\Controller\Role'=>'User\Controller\RoleController',
             'User\Controller\Permission' => 'User\Controller\PermissionController',
-            'User\Controller\Resource'=>'User\Controller\ResourceController'
+            'User\Controller\Resource'=>'User\Controller\ResourceController',
+            'User\Controller\Acl'=>'User\Controller\AclController',
         ),
     ),
     'router' => array(
@@ -155,6 +156,20 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'User\Controller\Permission',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'acl-role' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/acl-role/:id',
+                            'constraints' => array(
+
+                            ),
+                            'defaults' => array(
+                                'controller' => 'User\Controller\Acl',
                                 'action'     => 'index',
                             ),
                         ),

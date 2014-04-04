@@ -155,7 +155,6 @@ class Action extends AbstractActionController
                     $permission .= (!empty($permission) ? '/' : '') . ($action === 'index' ? 'list' : $action);
                 }
             }
-
             if (!$acl->isAllowed(
                 $userModel->getRole()->getName(),
                 $this->aclPage['resource'],
