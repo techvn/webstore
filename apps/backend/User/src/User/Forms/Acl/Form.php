@@ -21,37 +21,121 @@ class Form extends AbstractForm{
 		$event = $app->getMvcEvent();
 		$this->id  = $event->getRouteMatch()->getParam('id');
 	}
-	public function permission_role(){
+	public function permission_role1(){
 		$generalFieldset = new Fieldset('permission_option');
 		$generalFieldset->setLabel('Permission Option');
 		$list_all = new \User\Libs\Permission\Collection();
 		$list_action = $this->resource($list_all,$this->id);
+        $field_set = array();
 		foreach ($list_all->getPermissions() as $key => $value) {
+            $field_set[$key]= new Fieldset($key);
+            echo $key.'->';
+            $_demo = array();
 			foreach ($value as $k => $v) {
-				$element = new Element\Radio($key.'active'.$v);
-				$element->setAttributes(array("class"=>'setpermission'));
+                $group = explode('/',$v);
+                if(count($group)){
+                    $a = array_shift($group);
+                    if(!isset($_demo[$a])){
+                        $_demo[$a] = new Fieldset($a);
+                        echo $a.":(";
+                    }else{
+                        $name = implode('-',$group);
+                        echo $name.'-';
+                        $checkbox = new Element\Checkbox($a.'-'.$name);
+                        $checkbox->setLabel('A checkbox');
+                        $checkbox->setValue($k);
+                        if(isset($list_action[$key][$k])){
+                            $checkbox->setCheckedValue($k);
+                        }
 
-				@$element->setLabel($key." ".$v)
-						->setLabelAttributes(array(
-							'group'=>$key,
-							"value"=>$v,
-							"class"=>"radio inline"
-				));
-				$ac1 = base64_encode($this->id.'-'.$k.'-1');
-				$ac0 = base64_encode($this->id.'-'.$k.'-0');		
-				$element->setValueOptions(
-					array(
-						$ac1 => '/',
-						$ac0 => '',
-						));
-				$active = (isset($list_action[$key][$k]))?$ac1:$ac0;
-				$element->setValue($active);
-				$generalFieldset->add($element);
+//                        $checkbox->setCheckedValue("good");
+
+                        $_demo[$a]->add($checkbox);
+                    }
+                }else{
+                   // $_demo[$v] = new Fieldset($v);
+                    echo $v;
+                }
+                echo ")";
 			}
+            echo "<-";
+            echo "<BR>";
+             $field_set[$key]->add($_demo[$a]);
+            //echo "<pre>".print_r($_demo,1)."</pre>";
+            //$field_set[$key]->add($_demo);
 		}
-		$this->add($generalFieldset);
+        echo "<pre>";
+        print_r($field_set);
+        echo "</pre>";
+      //  $generalFieldset->add($field_set);
+		//$this->add($field_set);
+       // echo "<pre>".print_r($list_all->getPermissions(),1)."</pre>";
+        exit;
 	}
+    public function permission_role2(){
+        $generalFieldset = new Fieldset('permission_option');
+        $generalFieldset->setLabel('Permission Option');
+        $list_all = new \User\Libs\Permission\Collection();
+        $list_action = $this->resource($list_all,$this->id);
+        foreach ($list_all->getPermissions() as $key => $value) {
+            foreach ($value as $k => $v) {
+                $element = new Element\Checkbox($key.'active'.$v);
+                $element->setAttributes(array("class"=>'setpermission'));
 
+                @$element->setLabel($key." ".$v)
+                    ->setLabelAttributes(array(
+                        'group'=>$key,
+                        "value"=>$v,
+                        "class"=>"radio inline"
+                    ));
+                $ac1 = base64_encode($this->id.'-'.$k.'-1');
+                $ac0 = base64_encode($this->id.'-'.$k.'-0');
+                if(isset($list_action[$key][$k])){
+
+                    $element->setCheckedValue("good");
+                }
+                $element->setCheckedValue("good");
+                $active = (isset($list_action[$key][$k]))?$ac1:$ac0;
+              //  $element->setValue($v);
+                $generalFieldset->add($element);
+            }
+        }
+        $this->add($generalFieldset);
+        //echo "<pre>".print_r($list_all->getPermissions(),1)."</pre>";
+        // exit;
+    }
+    public function permission_role(){
+        $generalFieldset = new Fieldset('permission_option');
+        $generalFieldset->setLabel('Permission Option');
+        $list_all = new \User\Libs\Permission\Collection();
+        $list_action = $this->resource($list_all,$this->id);
+        foreach ($list_all->getPermissions() as $key => $value) {
+            foreach ($value as $k => $v) {
+                $element = new Element\Radio($key.'active'.$v);
+                $element->setAttributes(array("class"=>'setpermission'));
+
+                @$element->setLabel($key." ".$v)
+                    ->setLabelAttributes(array(
+                        'group'=>$key,
+                        "value"=>$v,
+                        "class"=>"radio inline"
+                    ));
+                $ac1 = base64_encode($this->id.'-'.$k.'-1');
+                $ac0 = base64_encode($this->id.'-'.$k.'-0');
+                $element->setValueOptions(
+                    array(
+                        $ac1 => '/',
+                        $ac0 => '',
+                    ));
+                $active = (isset($list_action[$key][$k]))?$ac1:$ac0;
+                $element->setValue($active);
+                $generalFieldset->add($element);
+            }
+        }
+        $this->add($generalFieldset);
+        //echo "<pre>".print_r($list_all->getPermissions(),1)."</pre>";
+        // exit;
+    }
 	public function resource($list,$role){
 		$userRole  = \User\Libs\Role\Model::fromId($role);
 		$acl = new Acl();
@@ -83,6 +167,7 @@ class Form extends AbstractForm{
 				} 
 			}
 		}
+
 		return $arr;
 	}
 

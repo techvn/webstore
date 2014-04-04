@@ -43,3 +43,19 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $('.setpermission').change(function(){
+        console.log($(this).val());
+        $.ajax({
+            url:"<?php echo $this->url('user/acl-role',array('action'=>'ajax')); ?>",
+            data:{'data':$(this).val()},
+            'type':'post',
+            success:function(result){
+                console.log(result);
+            }
+        });
+    });
+
+</script>

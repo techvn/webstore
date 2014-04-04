@@ -13,8 +13,8 @@ class Model extends AbstractTable
 		$select = $Table->select(
 			function(Select $select) use($user_acl_permission_id,$user_acl_role_id){
 				$select->where(array(
-					"mds_user_acl_permission_id"=>$user_acl_permission_id,
-					"mds_user_acl_role_id" => $user_acl_role_id
+					"user_acl_permission_id"=>$user_acl_permission_id,
+					"user_acl_role_id" => $user_acl_role_id
 					));
 			}
 		);

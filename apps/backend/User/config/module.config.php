@@ -164,7 +164,7 @@ return array(
                         'type'    => 'Segment',
                         'may_terminate' => true,
                         'options' => array(
-                            'route'    => '/acl-role/:id',
+                            'route'    => '/acl-role[/:id]',
                             'constraints' => array(
 
                             ),
