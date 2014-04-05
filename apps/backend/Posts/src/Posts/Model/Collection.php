@@ -52,9 +52,4 @@ class Collection extends AbstractTable
          $this->setData('parrentarray', $parrentarray);
         
     }
-    
-    
-    
-    
-    
 }

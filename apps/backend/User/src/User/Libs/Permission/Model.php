@@ -60,7 +60,7 @@ class Model extends AbstractTable
             return $this->getId();
         } catch (\Exception $e) {
             $this->events()->trigger(__CLASS__, 'after.save.failed', null, array('object' => $this));
-            throw new \MyZendTrung\Exception($e->getMessage(), $e->getCode(), $e);
+            throw new \MDS\Exception($e->getMessage(), $e->getCode(), $e);
         }
     }
     public function delete()

@@ -38,20 +38,15 @@ class CategoryController extends Action
     			$this->useFlashMessenger();
     		} else {
     			$viewModel = new \Posts\Model\Model();
-    			$viewModel->setParrentId($form->getValue('parrent_id'));
-    			$viewModel->setTitle($form->getValue('title'));
-    			$viewModel->setSlug($form->getValue('slug'));
-    			$viewModel->setActive($form->getValue('active'));
-    			$viewModel->setMetakey($form->getValue('metakey'));
-    			$viewModel->setMetades($form->getValue('metades'));
+    			$viewModel->setData($data);
     			$viewModel->save();
     
     			$this->flashMessenger()->addSuccessMessage('This view has been created');
     			return $this->redirect()->toRoute('posts/category/edit', array('id' => $viewModel->getId()));
     		}
     	}
-    
-    	return array('form' => $form);
+        $categoryCollection = new Collection();
+    	return array('form' => $form,'cates'=>$categoryCollection->getcategory());
     }
     
     
@@ -66,7 +61,6 @@ class CategoryController extends Action
     	$viewForm = new CategoryForm();
     	$viewForm->setAttribute('action', $this->url()->fromRoute('posts/category/edit', array('id' => $viewId)));
     	$viewForm->loadValues($viewModel);
-    
     	if ($this->getRequest()->isPost()) {
     		$data = $this->getRequest()->getPost()->toArray();
     		$viewForm->setData($data);
@@ -74,23 +68,17 @@ class CategoryController extends Action
     			$this->flashMessenger()->addErrorMessage('Can not save view');
     			$this->useFlashMessenger();
     		} else {
-    		    $viewModel->setParrentId($viewForm->getValue('parrent_id'));
-    			$viewModel->setTitle($viewForm->getValue('title'));
-    			$viewModel->setSlug($viewForm->getValue('slug'));
-    			$viewModel->setActive($viewForm->getValue('active'));
-    			$viewModel->setMetakey($viewForm->getValue('metakey'));
-    			$viewModel->setMetades($viewForm->getValue('metades'));
+    		    $viewModel->addData($data);
     			$viewModel->save();
     
     			$this->flashMessenger()->addSuccessMessage('This view has been saved');
     			return $this->redirect()->toRoute('posts/category/edit', array('id' => $viewId));
     		}
     	}
-    
-    	return array('form' => $viewForm, 'viewId' => $viewId);
+        $categoryCollection = new Collection();
+        return array('form' => $viewForm,'viewId' => $viewId,'cates'=>$categoryCollection->getcategory());
+
     }
-    
-    
    public function deleteAction()
     {
         $view = \Posts\Model\Model::fromId($this->getRouteMatch()->getParam('id', null));
@@ -99,7 +87,6 @@ class CategoryController extends Action
             $this->flashMessenger()->addSuccessMessage('This view has been deleted');
             return $this->redirect()->toRoute('posts/category');
         }
-
         //return $this->returnJson(array('success' => false, 'message' => 'View does not exists'));
         $this->flashMessenger()->addSuccessMessage('View does not exists');
         return $this->redirect()->toRoute('posts/category');

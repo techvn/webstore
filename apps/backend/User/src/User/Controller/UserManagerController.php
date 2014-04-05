@@ -15,6 +15,8 @@ class UserManagerController extends Action{
         $order_by = $this->params()->fromRoute('order_by');
         $order = $this->params()->fromRoute('order');
         $page = $this->params()->fromRoute('page');
+
+
         $redirect = base64_encode($this->getRequest()->getRequestUri());
         $paginator = $coll_user->bildPagination(
               $order_by,

@@ -157,6 +157,8 @@ return array(
                             'defaults' => array(
                                 'controller' => 'User\Controller\Permission',
                                 'action'     => 'index',
+                                'order_by'=>'id',
+                                'order'=>'ASC'
                             ),
                         ),
                     ),

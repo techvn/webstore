@@ -1,0 +1,34 @@
+<form action="<?php echo $this->form->getAttribute('action'); ?>" method="POST" class='form-horizontal form-bordered'>
+    <div class="control-group">
+        <label for="permission" class="control-label"><?php echo $this->form->get('permission')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="permission" id="permission" value="<?php echo $this->form->get('permission')->getValue();?>" placeholder="<?php echo $this->form->get('permission')->getLabel();?> " class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('permission'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            <?php echo $this->escapeHtml($this->translate($this->form->get('user_acl_resource_id')->getLabel())); ?>:
+        </label>
+        <div class="controls">
+            <select  class="span4" name="user_acl_resource_id" data-placeholder="Choose a Category" tabindex="1">
+                <?php $options = $this->form->get('user_acl_resource_id')->getValueOptions(); ?>
+                <?php foreach ($options as $option_id => $option_value): ?>
+                    <option <?php if ($option_id == $this->form->getValue('user_acl_resource_id')): ?>selected="selected" <?php endif; ?>
+                            label="<?php echo $this->escapeHtml($this->translate($option_value)); ?>"
+                            value="<?php echo (int) $option_id; ?>">
+                        <?php echo $this->escapeHtml($this->translate($option_value)); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+          <span class="help-inline">
+           <?php echo $this->formElementErrors($this->form->get('user_acl_resource_id'), array('class' => 'text-danger')); ?>
+         </span>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn">Cancel</button>
+    </div>
+</form>

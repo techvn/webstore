@@ -1,5 +1,5 @@
 <?php
-namespace MyZend\System\Core;
+namespace MDS\Core;
 class ParanoiaSeo{
   static function paranoia($string) {
 	$specialchars = array(

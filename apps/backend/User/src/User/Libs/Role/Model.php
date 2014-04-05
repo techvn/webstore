@@ -59,6 +59,24 @@ class Model extends AbstractTable
      *
      * @return integer
      */
+    public function update_columns($arraySave,$_id='id'){
+        $this->events()->trigger(__CLASS__, 'before.save', null, array('object' => $this));
+        try {
+            $id = $this->getId();
+
+            if (!empty($id)) {
+                $this->update($arraySave, array($_id => $this->getId()));
+                $this->events()->trigger(__CLASS__, 'after.save', null, array('object' => $this));
+            } else {
+                $this->events()->trigger(__CLASS__, 'after.save.failed', null, array('object' => $this));
+            }
+
+            return $this->getId();
+        } catch (\Exception $e) {
+            $this->events()->trigger(__CLASS__, 'after.save.failed', null, array('object' => $this));
+            throw new \MDS\Exception($e->getMessage(), $e->getCode(), $e);
+        }
+    }
     public function save()
     {
         $this->events()->trigger(__CLASS__, 'before.save', null, array('object' => $this));

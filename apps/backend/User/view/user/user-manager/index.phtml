@@ -61,11 +61,14 @@
                 }
                 ?>
                 </tbody></table>
+
 <!--            <div class="dataTables_info" id="DataTables_Table_2_info">Showing <span>1</span> to <span>10</span> of <span>18</span> entries</div>-->
 <!--            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_2_paginate">-->
                 <?php echo $this->paginationControl($this->paginator,
                     'Sliding',
-                    'layout/system/paginator', array('route' => 'user/user-manager'));
+                    'layout/system/paginator', array('route' => 'user/user-manager',
+                        'order_by' => $order_by, 'order' => $order
+                    ));
                 ?>
 <!--            </div>-->
         </div>

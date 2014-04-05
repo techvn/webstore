@@ -25,7 +25,7 @@ class Model extends AbstractTable
     {
     	$this->events()->trigger(__CLASS__, 'before.save', $this);
     	$arraySave = array(
-    	        'parrent_id' => $this->getParrentId(),
+    	        'parent_id' => $this->getParrentId(),
     			'title' => $this->getTitle(),
         	    'slug' => $this->getSlug(),
         	    'active' => $this->getActive(),

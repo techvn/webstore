@@ -1,57 +1,56 @@
-        <div class="box box-bordered">
-				<div class="box-title">
-					<h3><i class="icon-th-list"></i> Category create</h3>
-				</div>
-				<div class="box-content nopadding">
-					<form action="<?php echo $this->form->getAttribute('action'); ?>" method="POST" class="form-horizontal form-bordered">
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('title')); ?>
-							<div class="controls">
-								 <?php echo $this->formElement($this->form->get('title')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('title'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('slug')); ?>
-							<div class="controls">
-								 <?php echo $this->formElement($this->form->get('slug')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('slug'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('parrent_id')); ?>
-							<div class="controls">
-								 <?php echo $this->formselect($this->form->get('parrent_id')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('parrent_id'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('active')); ?>
-							<div class="controls">
-								 <?php echo $this->formcheckbox($this->form->get('active')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('active'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
-						
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('metakey')); ?>
-							<div class="controls">
-								 <?php echo $this->formElement($this->form->get('metakey')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('metakey'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
+<form action="<?php echo $this->form->getAttribute('action'); ?>" method="POST" class="form-horizontal form-bordered">
+    <div class="control-group">
+        <?php echo $this->formLabel($this->form->get('title')); ?>
+        <div class="controls">
+            <?php echo $this->formElement($this->form->get('title')); ?>
+            <?php echo $this->formElementErrors($this->form->get('title'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <?php echo $this->formLabel($this->form->get('slug')); ?>
+        <div class="controls">
+            <?php echo $this->formElement($this->form->get('slug')); ?>
+            <?php echo $this->formElementErrors($this->form->get('slug'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textarea" class="control-label"><?php echo $this->formLabel($this->form->get('parent_id')); ?>
+            </label>
+        <div class="controls">
+            <select name="parrent_id">
+                <option value="0"> Parent </option>
+                <?php $this->menu_drop_list($this->cates,$this,array('selected'=>$this->form->getValue('parent_id')));?>
+            </select>
+            <?php //echo $this->formselect($this->form->get('parrent_id')); ?>
+            <?php echo $this->formElementErrors($this->form->get('parent_id'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <?php echo $this->formLabel($this->form->get('active')); ?>
+        <div class="controls">
+            <?php echo $this->formcheckbox($this->form->get('active')); ?>
+            <?php echo $this->formElementErrors($this->form->get('active'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
 
-						<div class="control-group">						
-							<?php echo $this->formLabel($this->form->get('metades')); ?>
-							<div class="controls">
-								 <?php echo $this->formElement($this->form->get('metades')); ?>
-                                <?php echo $this->formElementErrors($this->form->get('metades'), array('class' => 'text-danger')); ?>
-							</div>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-primary"><?php echo $this->escapeHtml($this->translate('Save')); ?></button>
-							<button type="button" class="btn"><?php echo $this->escapeHtml($this->translate('Cancel')); ?></button>
-						</div>
-					</form>
-				</div>
-			</div>
+    <div class="control-group">
+        <?php echo $this->formLabel($this->form->get('metakey')); ?>
+        <div class="controls">
+            <?php echo $this->formElement($this->form->get('metakey')); ?>
+            <?php echo $this->formElementErrors($this->form->get('metakey'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <?php echo $this->formLabel($this->form->get('metades')); ?>
+        <div class="controls">
+            <?php echo $this->formElement($this->form->get('metades')); ?>
+            <?php echo $this->formElementErrors($this->form->get('metades'), array('class' => 'text-danger')); ?>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary"><?php echo $this->escapeHtml($this->translate('Save')); ?></button>
+        <button type="button" class="btn"><?php echo $this->escapeHtml($this->translate('Cancel')); ?></button>
+    </div>
+</form>
+

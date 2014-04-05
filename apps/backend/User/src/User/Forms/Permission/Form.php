@@ -1,5 +1,5 @@
 <?php
-namespace User\Forms\UserManager;
+namespace User\Forms\Permission;
 use Zend\Form\Element;
 use Zend\InputFilter\Factory as InputFilterFactory;
 class Form extends \MDS\Form\AbstractForm{
@@ -8,7 +8,7 @@ class Form extends \MDS\Form\AbstractForm{
         $inputFilterFactory = new InputFilterFactory();
         $inputFilter        = $inputFilterFactory->createInputFilter(
             array(
-                'email'=>array(
+                'permission'=>array(
                     'required' => true,
                     'validators' => array(
                         array('name' => 'not_empty'),
@@ -22,50 +22,32 @@ class Form extends \MDS\Form\AbstractForm{
                         ),
                     )
                 ),
-                'fullname'=>array(
-                    'required' => true,
-                    'validators' => array(
-                        array('name' => 'not_empty'),
-                    ),
-                ),
-                'phone'=>array(
-                    'required' => true,
-                    'validators' => array(
-                        array('name' => 'not_empty'),
-                    ),
-                ),
-                'username'=>array(
-                    'required' => true,
-                    'validators' => array(
-                        array('name' => 'not_empty'),
-                    ),
-                ),
 
             )
         );
         $this->setInputFilter($inputFilter);
-        $fullname = new Element('fullname');
-        $fullname->setLabel("Fullname");
-        $this->add($fullname);
-
-        $email = new Element('email');
-        $email->setLabel("Email");
-        $this->add($email);
-
-        $phone = new Element('phone');
-        $phone->setLabel("Phone");
-        $this->add($phone);
-
-        $username = new Element('username');
-        $username->setLabel("Username");
-        $this->add($username);
-
-        $email = new Element('password');
-        $email->setLabel("Password");
-        $this->add($email);
-
+        $permission = new Element('permission');
+        $permission->setLabel("permission");
+        $this->add($permission);
+        $this->add($this->elementResource());
         $this->add($this->elementActive());
-        $this->add($this->elementRole());
+    }
+    private function elementResource(){
+
+        $resourceEle           = new Element\Select('user_acl_resource_id');
+        $resourceEle->setLabel(" Resource ");
+
+        $roleCollection = new \User\Libs\Resource\Collection();
+        $rolesList      = $roleCollection->getResources();
+        $selectOptions  = array();
+        $selectOptions["Select Role"] = "Select Resource";
+        foreach ($rolesList as $role) {
+            $selectOptions[$role->getId()] = $role->getResource();
+        }
+        $resourceEle->setValueOptions($selectOptions)
+            ->setAttribute('class', 'form-control')
+            ->setEmptyOption("Select Resource");
+        return $resourceEle;
     }
     private function elementActive(){
         $element = new Element\Radio('active');

@@ -78,7 +78,7 @@ abstract class AbstractTable extends Object
 
         return $result;
     }
-    public function bildPagination($order_by,$order,$page,$_itemsPerPage=1,$pageRange = 7){
+    public function bildPagination(&$order_by,&$order,&$page,$_itemsPerPage=1,$pageRange = 7){
         $order_by = $order_by ? $order_by : 'id';
         $order = $order ? $order : Select::ORDER_ASCENDING;
         $page = $page ? (int) $page : 1;

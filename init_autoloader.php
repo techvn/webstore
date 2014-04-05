@@ -22,7 +22,6 @@ include __DIR__.'/define.php';
 if (file_exists('library/autoload.php')) {
     $loader = include 'library/autoload.php';
 }
-
 $zf2Path = false;
 
 if (is_dir('vendor/ZF2/library')) {

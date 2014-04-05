@@ -67,6 +67,11 @@ return array(
             ),
         ),
     ),
+    'controller_plugins' => array(
+        'invokables' => array(
+            'MyUploadImages' => 'System\Controller\Plugin\MyUploadImages',
+        )
+    ),
     'controllers' => array(
         'invokables' => array(
             'System\Controller\Index' => 'System\Controller\IndexController'

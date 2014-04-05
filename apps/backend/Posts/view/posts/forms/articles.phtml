@@ -1,0 +1,97 @@
+<form action="<?php echo $this->form->getAttribute('action'); ?>"
+      method="POST"
+      enctype="multipart/form-data"
+      class="form-horizontal form-bordered">
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('title')->getLabel();?></label>
+        <div class="controls">
+            <input type="text"
+                   name="title"
+                   id="title"
+                   value="<?php echo $this->form->get('title')->getValue();?>"
+                   placeholder="<?php echo $this->form->get('title')->getLabel();?>"
+                   class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('title'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('slug')->getLabel();?></label>
+        <div class="controls">
+            <input type="text"
+                   name="slug"
+                   id="slug"
+                   value="<?php echo $this->form->get('slug')->getValue();?>"
+                   placeholder="<?php echo $this->form->get('slug')->getLabel();?>"
+                   class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('slug'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"></label>
+        <div class="controls">
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                    <img src="<?php echo $form->getValue('image-file');?>" />
+                </div>
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                <div>
+                    <span class="btn btn-file">
+                        <span class="fileupload-new">Select image</span>
+                        <span class="fileupload-exists">Change</span>
+                        <?php $fileElement = $form->get('image-file'); ?>
+                        <?php echo $this->formFile($fileElement); ?>
+
+                    </span>
+                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                </div>
+            </div>
+            <?php echo $this->formElementErrors($fileElement); ?>
+        </div>
+        <!-- Custom file upload -->
+        <script src="<?php echo $this->serverUrl("/assets/backend/post/fileupload/bootstrap-fileupload.min.js")?>"></script>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->form->get('cid')->getLabel();?></label>
+        <div class="controls">
+            <select name="cid">
+                <option value="0"> Parent </option>
+                <?php $this->menu_drop_list($this->cates,$this,array('selected'=>$this->form->getValue('cid')));?>
+            </select>
+            <?php echo $this->formElementErrors($this->form->get('cid'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textarea" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('content')->getLabel()));?></label>
+        <div class="controls">
+            <textarea name="content" rows="5" id="content" class="input-block-level"><?php echo $this->escapeHtml($this->form->getValue('content'));?></textarea>
+            <?php echo $this->formElementErrors($this->form->get('content'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textarea" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('meta_des')->getLabel()));?></label>
+        <div class="controls">
+            <textarea name="meta_des" rows="5" id="meta_des" class="input-block-level"><?php echo $this->escapeHtml($this->form->getValue('meta_des'));?></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textarea" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('meta_key')->getLabel()));?></label>
+        <div class="controls">
+            <textarea name="meta_key" rows="5" id="meta_key" class="input-block-level"><?php echo $this->escapeHtml($this->form->getValue('meta_key'));?></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="textfield" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('active')->getLabel())); ?></label>
+        <div class="controls">
+            <?php
+            $element = $this->form->get('active');
+            ?>
+            <?php echo $this->formRadio($element,\Zend\Form\View\Helper\FormRadio::LABEL_PREPEND);?>
+            <?php echo $this->formElementErrors($this->form->get('active'), array('class' => 'text-danger')); ?>
+
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn">Cancel</button>
+    </div>
+</form>

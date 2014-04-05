@@ -35,6 +35,14 @@ class RoleController extends Action{
         $request = $this->getRequest();
         $response = $this->getResponse();
         $post = $request->getPost();
+        $model =  \User\Libs\Role\Model::fromId($post['pk']);
+        if($model){
+            $model->update_columns(
+                array(
+                    'description'=>$post['value']
+                )
+            );
+        }
         $response->setContent(\Zend\Json\Json::encode($post));
         return $response;
     }

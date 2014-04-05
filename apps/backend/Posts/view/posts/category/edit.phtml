@@ -1,3 +1,8 @@
-		 
-            <?php echo $this->partial('posts/forms/category.phtml', array('form' => $this->form)); ?>
-
+<div class="box box-bordered">
+    <div class="box-title">
+        <h3><i class="icon-th-list"></i> Category Edit</h3>
+    </div>
+    <div class="box-content nopadding">
+        <?php echo $this->partial('posts/forms/category.phtml', array('form' => $this->form,'cates'=>$this->cates)); ?>
+    </div>
+</div>
