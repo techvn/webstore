@@ -1,41 +1,5 @@
 <?php
-// +------------------------------------------------------------------------+
-// | class.upload.cs_CS.php                                                 |
-// +------------------------------------------------------------------------+
-// | Copyright (c) Lukáš Gavenda 2007. All rights reserved.                 |
-// | Version       0.25                                                     |
-// | Last modified 11/29/2007                                               |
-// | Email         LukasGavenda@GmaiL.com                                   |
-// +------------------------------------------------------------------------+
-// | This program is free software; you can redistribute it and/or modify   |
-// | it under the terms of the GNU General Public License version 2 as      |
-// | published by the Free Software Foundation.                             |
-// |                                                                        |
-// | This program is distributed in the hope that it will be useful,        |
-// | but WITHOUT ANY WARRANTY; without even the implied warranty of         |
-// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          |
-// | GNU General Public License for more details.                           |
-// |                                                                        |
-// | You should have received a copy of the GNU General Public License      |
-// | along with this program; if not, write to the                          |
-// |   Free Software Foundation, Inc., 59 Temple Place, Suite 330,          |
-// |   Boston, MA 02111-1307 USA                                            |
-// |                                                                        |
-// | Please give credit on sites that use class.upload and submit changes   |
-// | of the script so other people can use them as well.                    |
-// | This script is free to use, don't abuse.                               |
-// +------------------------------------------------------------------------+
 
-/**
- * Class upload Czech translation
- *
- * @version   0.25
- * @author    Lukáš Gavenda (LukasGavenda@GmaiL.com)
- * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
- * @copyright 2007 - Lukáš Gavenda
- * @package   cmf
- * @subpackage external
- */
 
     $translation = array();
     $translation['file_error']                  = 'Nastal problém se souborem. Zkuste to prosím znovu.';

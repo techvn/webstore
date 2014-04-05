@@ -1,42 +1,5 @@
 <?php
-// +------------------------------------------------------------------------+
-// | class.upload.ca_CA.php                                                 |
-// +------------------------------------------------------------------------+
-// | Copyright (c) Antoni Canals 2008. All rights reserved.                 |
-// | Version       0.25                                                     |
-// | Last modified 24/12/2008                                               |
-// | Email         antoni.canals@prehistoria.urv.cat                        |
-// | Web           http://iphes.urv.cat                                     |
-// +------------------------------------------------------------------------+
-// | This program is free software; you can redistribute it and/or modify   |
-// | it under the terms of the GNU General Public License version 2 as      |
-// | published by the Free Software Foundation.                             |
-// |                                                                        |
-// | This program is distributed in the hope that it will be useful,        |
-// | but WITHOUT ANY WARRANTY; without even the implied warranty of         |
-// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          |
-// | GNU General Public License for more details.                           |
-// |                                                                        |
-// | You should have received a copy of the GNU General Public License      |
-// | along with this program; if not, write to the                          |
-// |   Free Software Foundation, Inc., 59 Temple Place, Suite 330,          |
-// |   Boston, MA 02111-1307 USA                                            |
-// |                                                                        |
-// | Please give credit on sites that use class.upload and submit changes   |
-// | of the script so other people can use them as well.                    |
-// | This script is free to use, don't abuse.                               |
-// +------------------------------------------------------------------------+
 
-/**
- * Class upload catalan translation
- *
- * @version   0.25
- * @author    Antoni Canals (antoni.canals@prehistoria.urv.cat)
- * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
- * @copyright Antoni Canals
- * @package   cmf
- * @subpackage external
- */
 
     $translation = array();
     $translation['file_error']                  = 'Error de transmissió. Si us plau, torneu-ho a provar.';

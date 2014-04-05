@@ -1,42 +1,5 @@
 <?php
-// +------------------------------------------------------------------------+
-// | class.upload.et_EE.php                                                 |
-// +------------------------------------------------------------------------+
-// | Copyright (c) -lohe- 2008. All rights reserved.                        |
-// | Version       0.25                                                     |
-// | Last modified 01/13/2008                                               |
-// | Email         drache@hot.ee                                            |
-// | Web           http://lohe.pri.ee/                                      |
-// +------------------------------------------------------------------------+
-// | This program is free software; you can redistribute it and/or modify   |
-// | it under the terms of the GNU General Public License version 2 as      |
-// | published by the Free Software Foundation.                             |
-// |                                                                        |
-// | This program is distributed in the hope that it will be useful,        |
-// | but WITHOUT ANY WARRANTY; without even the implied warranty of         |
-// | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          |
-// | GNU General Public License for more details.                           |
-// |                                                                        |
-// | You should have received a copy of the GNU General Public License      |
-// | along with this program; if not, write to the                          |
-// |   Free Software Foundation, Inc., 59 Temple Place, Suite 330,          |
-// |   Boston, MA 02111-1307 USA                                            |
-// |                                                                        |
-// | Please give credit on sites that use class.upload and submit changes   |
-// | of the script so other people can use them as well.                    |
-// | This script is free to use, don't abuse.                               |
-// +------------------------------------------------------------------------+
 
-/**
- * Class upload Estonian translation
- *
- * @version   0.25
- * @author    -lohe- (drache@hot.ee)
- * @license   http://opensource.org/licenses/gpl-license.php GNU Public License
- * @copyright -lohe-
- * @package   cmf
- * @subpackage external
- */
 
     $translation = array();
     $translation['file_error']                  = 'Viga. Palun proovi uuesti.';

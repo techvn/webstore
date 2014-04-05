@@ -34,13 +34,42 @@
                         <?php $role = \User\Libs\Role\Model::fromId($val['user_acl_role_id'])?>
                         <td class='sorting_1'>
                             <a href="#"
-                               id="sex1"
+                               id="<?php echo $val['id']?>_user"
                                data-type="select"
                                data-pk="<?php echo $val['id']?>"
                                data-value=""
                                data-original-title="Select sex"
                                class="editable editable-click editable-open"
                                style="color: gray;"><?php echo $role->getName();?></a>
+                            <script type="text/javascript">
+                                $('#<?php echo $val['id']?>_user').editable({
+                                    url: '<?php echo $this->url('user/user-manager',array('action'=>'ajax'));?>',
+                                    prepend: "not selected",
+                                    source: <?php
+                                             $user = new \User\Libs\Role\Collection();
+                                             echo "[";
+                                             $html="";
+                                             foreach($user->getRoles() as $row){
+                                                $html .= '{value:'.$row->getId().',text:"'.$row->getName().'"},';
+                                             }
+                                             echo substr($html,0,-1);
+                                             echo "]";
+                                    ?>,
+                                    display: function(value, sourceData) {
+                                        var colors = {"": "gray", 1: "green", 2: "blue"},
+                                            elem = $.grep(sourceData, function(o){return o.value == value;});
+
+                                        if(elem.length) {
+                                            $(this).text(elem[0].text).css("color", colors[value]);
+                                        } else {
+                                            $(this).empty();
+                                        }
+                                    },
+                                    success:function(data){
+                                        console.log(data);
+                                    }
+                                });
+                            </script>
                         </td>
                         <td class='hidden-350'><?php echo $this->escapeHtml($val['username']); ?></td>
                         <td class='hidden-1024'><?php echo $this->escapeHtml($val['created_at']); ?></td>
@@ -74,32 +103,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-        $('#sex1').editable({
-            url: '<?php echo $this->url('user/user-manager',array('action'=>'ajax'));?>',
-            prepend: "not selected",
-            source: <?php
-                     $user = new \User\Libs\Role\Collection();
-                     echo "[";
-                     $html="";
-                     foreach($user->getRoles() as $row){
-                        $html .= '{value:'.$row->getId().',text:"'.$row->getName().'"},';
-                     }
-                     echo substr($html,0,-1);
-                     echo "]";
-            ?>,
-            display: function(value, sourceData) {
-                var colors = {"": "gray", 1: "green", 2: "blue"},
-                    elem = $.grep(sourceData, function(o){return o.value == value;});
-
-                if(elem.length) {
-                    $(this).text(elem[0].text).css("color", colors[value]);
-                } else {
-                    $(this).empty();
-                }
-            },
-            success:function(data){
-                console.log(data);
-            }
-        });
-</script>
