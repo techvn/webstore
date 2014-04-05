@@ -21,7 +21,25 @@ class CategoryController extends Action
     public function indexAction()
     {
     	$categoryCollection = new Collection();
-    	return array('category' => $categoryCollection->getcategory());
+        $order_by = $this->params()->fromRoute('order_by');
+        $order = $this->params()->fromRoute('order');
+        $page = $this->params()->fromRoute('page');
+        $redirect = base64_encode($this->getRequest()->getRequestUri());
+        $paginator = $categoryCollection->bildPagination(
+            $order_by,
+            $order ,
+            $page,
+            1,
+            7
+        );
+        return array(
+            'order_by' => $order_by,
+            'order' => $order,
+            'page' => $page,
+            'paginator' => $paginator,
+            'redirect'=>$redirect
+        );
+
     }
     
     
