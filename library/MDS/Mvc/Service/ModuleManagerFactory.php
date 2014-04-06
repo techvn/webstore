@@ -62,7 +62,6 @@ class ModuleManagerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-
         //$moduleCollection = new ModuleCollection();
         $modules          = array(
            array('name'=>'Products')
@@ -77,6 +76,7 @@ class ModuleManagerFactory implements FactoryInterface
                 GC_APPLICATION_PATH . '/library/Modules/' . $module['name']
             );
         }
+
         $autoloader->register();
 
         $application   = $serviceLocator->get('Application');
@@ -154,12 +154,10 @@ class ModuleManagerFactory implements FactoryInterface
             'Zend\ModuleManager\Feature\InputFilterProviderInterface',
             'getInputFilterConfig'
         );
-
         $moduleManager = new ModuleManager($array, $application->getEventManager());
         $moduleManager->getEventManager()->attachAggregate($defaultListeners);
         $moduleManager->getEventManager()->attachAggregate($serviceListener);
         $moduleManager->loadModules();
-
         $config = $moduleManager->getEvent()->getConfigListener()->getMergedConfig(false);
         if (isset($config['router']['routes'])) {
             $router = $serviceLocator->get('Router');
