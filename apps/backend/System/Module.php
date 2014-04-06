@@ -92,6 +92,9 @@ class Module extends Mvc\Module
                     return new \System\Helpers\Select\MenuDropList(
 
                     );
+                },
+                'loadEditor'=>function($pm){
+                    return new \System\Helpers\loadEditor();
                 }
             )
         );

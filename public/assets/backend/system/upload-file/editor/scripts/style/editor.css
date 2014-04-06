@@ -1,0 +1,8 @@
+body{font:8pt tahoma, arial, sans-serif;background:#ededed;color:#444;margin:0 5px}
+.dialogFooter{padding-bottom:12px!important;padding-right:10px!important;background-color:#ededed}
+td{font-size:8pt}
+textarea{overflow:auto}
+textarea,.inpSel,.inpTxt{font-family:Arial, Helvetica, sans-serif;font-size:11px;background-color:#FFF;border:1px solid #B8B8B8;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;padding:2px}
+.inpBtn,.inpBtnOver,.inpBtnOut{margin-left:2px;font-size:11px;font-weight:700;color:#000;border-top:1px solid #DDD;border-right:1px solid #AAA;border-bottom:1px solid #AAA;border-left:1px solid #DDD;cursor:pointer;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-color:#EEE;background-image:url(button.png);background-repeat:repeat-x;background-position:0 0;padding:5px 10px}
+.inpBtn:hover,.inpBtnOver:hover,.inpBtnOut:hover{background-image:url(button.png);background-repeat:repeat-x;background-position:0 -38px}
+.inpChk,.inpRdo{margin-right:3px;margin-bottom:1px}

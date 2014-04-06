@@ -12,6 +12,7 @@ use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 use Imagine\Imagick\Imagine;
 use Zend\Filter\File\RenameUpload;
+
  class MyUploadImages extends AbstractPlugin{
     public function doUpload($images_name,$filedir=null){
 	  	$newfile = $_FILES[$images_name];

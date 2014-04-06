@@ -11,20 +11,6 @@ return array(
     'router' => array(
         'routes' => array(
             'system' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/system',
-                    'defaults' => array(
-                        'controller' => 'System\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'system' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/system',
@@ -45,6 +31,20 @@ return array(
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'filemanager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/file[/:action]',
+                            'constraints' => array(
+
+                            ),
+                            'defaults' => array(
+                                'controller' => 'System\Controller\FileManager',
+                                'action'     => 'index',
                             ),
                         ),
                     ),
@@ -74,7 +74,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'System\Controller\Index' => 'System\Controller\IndexController'
+            'System\Controller\Index' => 'System\Controller\IndexController',
+            'System\Controller\FileManager' =>'System\Controller\FileManagerController'
         ),
     ),
     'view_manager' => array(
@@ -89,6 +90,7 @@ return array(
         'template_map' => array(
             'layout/system'           => __DIR__ . '/../view/layouts/priv.phtml',
             'layout/system/paginator' => __DIR__.'/../view/layouts/comp/paginator.phtml',
+            'layout/system/editor' => __DIR__.'/../view/layouts/editor/viewtree.phtml',
             'pageheader'           => __DIR__ . '/../view/layouts/comp/pageheader.phtml',
             'breadcrumbs'           => __DIR__ . '/../view/layouts/comp/breadcrumbs.phtml',
             'layout/system/login'           => __DIR__ . '/../view/layouts/login.phtml',

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style/editor.css" rel="stylesheet" type="text/css" />
+<script>
+  var sLangDir=parent.oUtil.langDir;
+  document.write("<scr"+"ipt src='language/"+sLangDir+"/youtube_video.js'></scr"+"ipt>");
+</script>
+<script>writeTitle()</script>
+<script>
+function bodyOnLoad()
+  {
+  loadTxt();
+
+  }
+function getVideoId(url) {
+	return url.replace(/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/,"$5");
+}
+
+function Ok() {
+	var videoId = getVideoId(document.getElementById("youtube").value);
+    var youtubeurl = "<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/" + videoId + "\" frameborder=\"0\" allowfullscreen></iframe>";
+	
+	if(videoId==null || videoId=="") return;
+	
+    var oEditor = parent.oUtil.oEditor;
+    var obj = parent.oUtil.obj;
+    obj.insertHTML(youtubeurl);
+    return true;
+}
+</script>
+</head>
+<body style="overflow:hidden;">
+
+<table width=100% height=100% align=center cellpadding=0 cellspacing=0>
+<tr>
+<td valign=top style="padding:5;height:100%">
+
+  <table cellpadding=2 cellspacing=0>
+  <tr>
+    <td width="90px" nowrap><span id="txtLang" name="txtLang">Source</span>:&nbsp;&nbsp;</td>
+    <td colspan="4" width="100%">
+      <table cellpadding="0" cellspacing="0" width="100%" id="Table2">
+      <tr>
+      <td width="100%"><input type="text" name="youtube" id="youtube" class="inpTxt" size="40" style="width:95%"/></td>
+      </tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+
+</td>
+</tr>
+<tr>
+<td class="dialogFooter" align="right" style="padding-top:10px">
+  <table cellpadding=0 cellspacing=0>
+  <tr>
+  <td>
+    <input type="button" name=btnCancel id=btnCancel value="cancel" onClick="self.closeWin()" class="inpBtn">
+  </td>
+  <td>
+    <input type="button" name=btnOk id=btnOk value=" ok " onClick="Ok();self.closeWin();" class="inpBtn">
+  </td>
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -10,7 +10,7 @@ class ListSort extends AbstractHelper{
 
 		$categories =new \TrungDm\SystemDb\Navigation\Collection();
 		$this->categorie = $categories->getNavigation();
-		$app = \TrungDm\Registry::get('Application');
+		$app = \MDS\Registry::get('Application');
 
 		$sm = $app->getServiceManager();
 		$this->getView();

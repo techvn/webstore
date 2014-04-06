@@ -126,7 +126,7 @@ class Collection extends AbstractTable
     public function write($object){
         $this->init();
 
-        $config = \TrungDm\Registry::get("Application")->getServiceManager()->get('config');
+        $config = \MDS\Registry::get("Application")->getServiceManager()->get('config');
         $config_navigation = $config['config_layout']['admin'];
 
         $templateContent   = file_get_contents($config_navigation['navigation']['path_template']);

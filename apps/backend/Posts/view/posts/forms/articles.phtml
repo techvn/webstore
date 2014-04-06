@@ -63,8 +63,9 @@
     <div class="control-group">
         <label for="textarea" class="control-label"><?php echo $this->escapeHtml($this->translate($this->form->get('content')->getLabel()));?></label>
         <div class="controls">
-            <textarea name="content" rows="5" id="content" class="input-block-level"><?php echo $this->escapeHtml($this->form->getValue('content'));?></textarea>
+            <textarea name="content" rows="5" id="body" class="input-block-level"><?php echo $this->escapeHtml($this->form->getValue('content'));?></textarea>
             <?php echo $this->formElementErrors($this->form->get('content'), array('class' => 'text-danger help-block')); ?>
+            <?php $this->loadEditor('body');?>
         </div>
     </div>
     <div class="control-group">
