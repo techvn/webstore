@@ -55,6 +55,7 @@ return array(
 
                             ),
                             'defaults' => array(
+
                                 'controller' => 'User\Controller\Index',
                                 'action'     => 'Login',
                             ),
@@ -101,6 +102,7 @@ return array(
                                 'order' => 'ASC|DESC',
                             ),
                             'defaults' => array(
+                                'module'=>'user',
                                 'controller' => 'User\Controller\UserManager',
                                 'action'     => 'index',
                             ),
@@ -137,6 +139,7 @@ return array(
                                 'order' => 'ASC|DESC',
                             ),
                             'defaults' => array(
+                                'module'=>'user',
                                 'controller' => 'User\Controller\Role',
                                 'action'     => 'index',
                             ),
@@ -155,6 +158,7 @@ return array(
                                 'order' => 'ASC|DESC',
                             ),
                             'defaults' => array(
+                                'module'=>'user',
                                 'controller' => 'User\Controller\Permission',
                                 'action'     => 'index',
                                 'order_by'=>'id',
@@ -171,6 +175,7 @@ return array(
 
                             ),
                             'defaults' => array(
+                                'module'=>'user',
                                 'controller' => 'User\Controller\Acl',
                                 'action'     => 'index',
                             ),
@@ -180,6 +185,7 @@ return array(
             ),
         ),
     ),
+
     'view_manager' => array(
         'template_path_stack' => array(
             'User' => __DIR__ . '/../view',

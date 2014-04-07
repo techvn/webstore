@@ -74,6 +74,8 @@ class Action extends AbstractActionController
             }
         }
         $this->layout()->routeParams = $this->getRouteMatch()->getParams();
+        $this->layout()->routeName = $this->getRouteMatch()->getMatchedRouteName();
+
         $this->useFlashMessenger(false);
     }
     public function getRouteMatch()

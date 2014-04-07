@@ -1,16 +1,23 @@
-					<ul>
-						<li>
-							<a href="more-login.html">Home</a>
-							<i class="icon-angle-right"></i>
-						</li>
-						<li>
-							<a href="more-files.html">Pages</a>
-							<i class="icon-angle-right"></i>
-						</li>
-						<li>
-							<a href="more-blank.html">Blank page</a>
-						</li>
-					</ul>
-					<div class="close-bread">
-						<a href="#"><i class="icon-remove"></i></a>
-					</div>
+<?php $container = $this->navigation()->breadcrumbs()  ?>
+<?php /* @var $container \Zend\View\Helper\Navigation\Breadcrumbs */ ?>
+<?php $navigation = $container->getContainer() ?>
+<?php /* @var $navigation \Zend\Navigation\Navigation */ ?>
+<ul class="breadcrumb">
+    <li><a href="<?php echo $this->url('system') ?>">Home</a> <span class="divider">/</span></li>
+    <?php $active = $container->findActive($navigation) ?>
+    <?php foreach($this->pages as $page): ?>
+        <?php /* @var $page \Zend\Navigation\Page\Mvc */ ?>
+        <?php if( ! $page->isActive()): ?>
+            <li>
+                <a href="<?php echo $page->getHref() ?>"><?php echo $page->getLabel() ?></a>
+                <span class="divider">/</span>
+            </li>
+        <?php else: ?>
+            <li class="active">
+                <?php if($container->getLinkLast()): ?><a href="<?php echo $page->getHref() ?>"><?php endif ?>
+                    <?php echo $page->getLabel() ?>
+                    <?php if($container->getLinkLast()): ?><a href="<?php echo $page->getHref() ?>"><?php endif ?>
+            </li>
+        <?php endif ?>
+    <?php endforeach ?>
+</ul>

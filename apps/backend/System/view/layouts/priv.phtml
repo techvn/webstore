@@ -151,7 +151,12 @@
                     <?php echo $this->partial('pageheader');?>
 				</div><!-- end-page-header -->
 				<div class="breadcrumbs">
-                    <?php echo $this->partial('breadcrumbs');?>
+                    <?php $partial = array('breadcrumbs', 'default') ?>
+                    <?php $this->navigation('Navbar')->breadcrumbs()->setPartial($partial) ?>
+                    <?php echo $this->navigation('Navbar')->breadcrumbs()->render() ?>
+                    <?php //echo $this->navigation('Navbar')->breadcrumbs()->setMinDepth(0)->setPartial('breadcrumbs'); ?>
+                    <?php //echo $this->partial('breadcrumbs');?>
+
 				</div><!-- end-breadcrumbs -->
 				<?php echo $this->partial('messages', array('messages' => $this->flashMessages)); ?>
 				<div class="row-fluid">

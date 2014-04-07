@@ -18,6 +18,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include __DIR__.'/define.php';
+include __DIR__.'/library/MDS/Function.php';
 // Composer autoloading
 if (file_exists('library/autoload.php')) {
     $loader = include 'library/autoload.php';

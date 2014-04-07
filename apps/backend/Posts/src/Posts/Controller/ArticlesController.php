@@ -29,6 +29,7 @@ class ArticlesController extends Action
             1,
             7
         );
+
         return array(
             'order_by' => $order_by,
             'order' => $order,

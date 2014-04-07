@@ -14,7 +14,6 @@ return array(
     ),
     'router' => array(
         'routes' => array(
-
             'posts' => array(
             		'type'    => 'Literal',
             		'options' => array(
@@ -45,7 +44,7 @@ return array(
                                             'default' => array(
                                                 'type'    => 'Segment',
                                                 'options' => array(
-                                                    'route'    => '/[:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                                                    'route'    => '[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
                                                     'constraints' => array(
                                                         'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
                                                         'id'     => '[0-9]+',
@@ -119,7 +118,7 @@ return array(
                                             'default' => array(
                                                 'type'    => 'Segment',
                                                 'options' => array(
-                                                    'route'    => '/[:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                                                    'route'    => '[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
                                                     'constraints' => array(
                                                         'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
                                                         'id'     => '[0-9]+',

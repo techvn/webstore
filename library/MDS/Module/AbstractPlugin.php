@@ -138,7 +138,6 @@ abstract class AbstractPlugin
         if (empty($this->renderer)) {
             $this->renderer = new Renderer();
         }
-
         $this->renderer->addPath($dir);
 
         return $this;

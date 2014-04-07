@@ -21,7 +21,7 @@ return array (
             'name' => 'User',
             'icon' => 'icon-archive',
             'label' => 'User',
-            'route' => 'user/user-manager',
+            'route' => 'user',
             'params' =>
              array (
                 'action' => 'index'
@@ -81,7 +81,7 @@ return array (
         'name' => 'Post',
         'icon' => 'icon-archive',
         'label' => 'Post',
-        'route' => 'Posts',
+        'route' => 'posts',
         'params' =>
         array (
             'action' => 'index'

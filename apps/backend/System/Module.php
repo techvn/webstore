@@ -80,7 +80,8 @@ class Module extends Mvc\Module
     {
         return array(
             'factories' => array(
-                'Navbar' => 'System\Navigation\Core\Navbar\MyNavbarFactory'
+                'Navbar' => 'System\Navigation\Core\Navbar\MyNavbarFactory',
+                'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
             )
         );
     }
