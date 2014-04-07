@@ -1,0 +1,13 @@
+<form action="<?php echo $this->form->getAttribute('action'); ?>" method="POST" class='form-horizontal form-bordered'>
+    <div class="control-group">
+        <label for="permission" class="control-label"><?php echo $this->form->get('resource')->getLabel();?></label>
+        <div class="controls">
+            <input type="text" name="resource" id="resource" value="<?php echo $this->form->get('resource')->getValue();?>" placeholder="<?php echo $this->form->get('resource')->getLabel();?> " class="input-xlarge">
+            <?php echo $this->formElementErrors($this->form->get('resource'), array('class' => 'text-danger help-block')); ?>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn">Cancel</button>
+    </div>
+</form>

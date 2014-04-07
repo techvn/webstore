@@ -46,5 +46,10 @@ class RoleController extends Action{
         $response->setContent(\Zend\Json\Json::encode($post));
         return $response;
     }
+    public function createAction(){
 
+    }
+    public function editAction(){
+
+    }
 }

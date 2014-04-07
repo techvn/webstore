@@ -72,6 +72,21 @@ return array (
                     'pages' =>array (
 
                     ),
+                ),
+                array (
+                    'id' => '2',
+                    'name' => 'Resource',
+                    'icon' => 'icon-archive',
+                    'label' => 'Resource',
+                    'route' => 'user/resource-manager',
+                    'params' =>array (
+                        'action' => 'index'
+                    ),
+                    'resource' => 'settings',
+                    'permission'=>'user/list',
+                    'pages' =>array (
+
+                    ),
                 )
             ),
         ),

@@ -1,25 +1,35 @@
-			<form action="http://www.eakroko.de/flat/search-results.html" method="GET" class='search-form'>
-				<div class="search-pane">
-					<input type="text" name="search" placeholder="Search here...">
-					<button type="submit"><i class="icon-search"></i></button>
-				</div>
-			</form>
-			<div class="subnav">
-				<div class="subnav-title">
-					<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Plugins</span></a>
-				</div>
-				<ul class="subnav-menu">
-					<li>
-						<a href="#">Cache manager</a>
-					</li>
-					<li>
-						<a href="#">Import manager</a>
-					</li>
-					<li>
-						<a href="#">Contact form generator</a>
-					</li>
-					<li>
-						<a href="#">SEO optimization</a>
-					</li>
-				</ul>
-			</div>
+<?php
+$serviceLocator = \MDS\Registry::get('Application')->getServiceManager();
+$router = $serviceLocator->get('Router');
+$config= $serviceLocator->get('Config');
+//echo $this->layout()->routeName.'<br>';
+
+$list = explode('/',$this->layout()->routeName);
+$routers = $router->getRoute($list[0])->assemble();
+$array_router = $config['router']['routes'][$list[0]]['child_routes'];
+
+//echo $this->layout()->routeName;
+//print_r($array_router);
+//;
+$__backlist = array('default','logout','login','edit','acl-role');
+?>
+<?php foreach($array_router as $key=>$rows):?>
+    <?php if(!in_array($key,$__backlist)):?>
+    <div class="subnav">
+        <div class="subnav-title">
+            <a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span><?php echo $key;?></span></a>
+        </div>
+        <ul class="subnav-menu">
+            <?php
+            $sub_list = array('index'=>'List','create'=>'Create');
+            foreach($sub_list as $k=>$rows):
+                ?>
+                <li>
+                    <a href="<?php echo $this->url($list[0].'/'.$key,array('action'=>$k));?>"><?php echo $rows;?></a>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <?php endif;?>
+<?php endforeach;?>
+

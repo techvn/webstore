@@ -143,12 +143,18 @@
 	</div><!-- end-navigation -->
 	<div class="container-fluid" id="content">
 		<div id="left">
+            <form action="http://www.eakroko.de/flat/search-results.html" method="GET" class='search-form'>
+                <div class="search-pane">
+                    <input type="text" name="search" placeholder="Search here...">
+                    <button type="submit"><i class="icon-search"></i></button>
+                </div>
+            </form>
             <?php echo $this->partial('menuleft');?>
 		</div><!-- end-left -->
 		<div id="main">
 			<div class="container-fluid">
 				<div class="page-header">
-                    <?php echo $this->partial('pageheader');?>
+                    <?php //echo $this->partial('pageheader');?>
 				</div><!-- end-page-header -->
 				<div class="breadcrumbs">
                     <?php $partial = array('breadcrumbs', 'default') ?>

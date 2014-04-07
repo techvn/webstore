@@ -13,24 +13,11 @@ class Model extends AbstractTable
     {
         $this->events()->trigger(__CLASS__, 'before.save', null, array('object' => $this));
         $arraySave = array(
-            'firstname' => $this->getFirstname(),
-            'lastname' => $this->getLastname(),
-            'email' => $this->getEmail(),
-            'login' => $this->getLogin(),
-            'updated_at' => new Expression('NOW()'),
-            'user_acl_role_id' => $this->getUserAclRoleId(),
-            'retrieve_password_key' => $this->getRetrievePasswordKey(),
-            'retrieve_updated_at' => $this->getRetrieveUpdatedAt(),
+            'resource' => $this->getResource()
         );
-
-        $password = $this->getPassword();
-        if (!empty($password)) {
-            $arraySave['password'] = $password;
-        }
         try {
             $id = $this->getId();
             if (empty($id)) {
-                $arraySave['created_at'] = new Expression('NOW()');
                 $this->insert($arraySave);
                 $this->setId($this->getLastInsertId());
             } else {
@@ -42,7 +29,7 @@ class Model extends AbstractTable
             return $this->getId();
         } catch (\Exception $e) {
             $this->events()->trigger(__CLASS__, 'after.save.failed', null, array('object' => $this));
-            throw new \MyZendTrung\Exception($e->getMessage(), $e->getCode(), $e);
+            throw new \MDS\Exception($e->getMessage(), $e->getCode(), $e);
         }
     }
     public function delete()

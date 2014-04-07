@@ -1,6 +1,6 @@
 <div class="box">
     <div class="box-content nopadding">
-        <div class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered dataTable dataTable-noheader dataTable-nofooter">
+        <div class="dataTables_wrapper" role="grid"><table class="table table-nomargin table-bordered dataTable-noheader dataTable-nofooter">
                 <thead>
                 <tr role="row">
                     <th class="sorting"><?php echo $this->escapeHtml($this->translate('ID')); ?></th>
@@ -43,7 +43,10 @@
             </table>
             <?php echo $this->paginationControl($this->paginator,
                 'Sliding',
-                'layout/system/paginator', array('route' => 'user/resource-manager'));
+                'layout/system/paginator', array(
+                    'route' => 'user/resource-manager',
+                    'order_by' => $order_by, 'order' => $order
+                ));
             ?>
         </div>
     </div>
