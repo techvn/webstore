@@ -46,7 +46,7 @@ class CategoryController extends Action
     public function createAction()
     {
     	$form = new CategoryForm();
-    	$form->setAttribute('action', $this->url()->fromRoute('posts/category/create'));
+    	$form->setAttribute('action', $this->url('posts/cate-manager',array('action'=>'create')));
     
     	if ($this->getRequest()->isPost()) {
     		$data = $this->getRequest()->getPost()->toArray();
@@ -60,7 +60,7 @@ class CategoryController extends Action
     			$viewModel->save();
     
     			$this->flashMessenger()->addSuccessMessage('This view has been created');
-    			return $this->redirect()->toRoute('posts/category/edit', array('id' => $viewModel->getId()));
+    			return $this->redirect()->toRoute('posts/cate-manager', array('id' => $viewModel->getId()));
     		}
     	}
         $categoryCollection = new Collection();
@@ -73,11 +73,11 @@ class CategoryController extends Action
     	$viewId    = $this->getRouteMatch()->getParam('id', null);
     	$viewModel = \Posts\Model\Model::fromId($viewId);
     	if (empty($viewId) or empty($viewModel)) {
-    		return $this->redirect()->toRoute('posts/category');
+    		return $this->redirect()->toRoute('posts/cate-manager',array('action'=>'index'));
     	}
     
     	$viewForm = new CategoryForm();
-    	$viewForm->setAttribute('action', $this->url()->fromRoute('posts/category/edit', array('id' => $viewId)));
+    	$viewForm->setAttribute('action', $this->url()->fromRoute('posts/cate-manager', array(array('action'=>'edit'),'id' => $viewId)));
     	$viewForm->loadValues($viewModel);
     	if ($this->getRequest()->isPost()) {
     		$data = $this->getRequest()->getPost()->toArray();
@@ -90,7 +90,7 @@ class CategoryController extends Action
     			$viewModel->save();
     
     			$this->flashMessenger()->addSuccessMessage('This view has been saved');
-    			return $this->redirect()->toRoute('posts/category/edit', array('id' => $viewId));
+    			return $this->redirect()->toRoute('posts/cate-manager', array('id' => $viewId));
     		}
     	}
         $categoryCollection = new Collection();
@@ -100,14 +100,12 @@ class CategoryController extends Action
    public function deleteAction()
     {
         $view = \Posts\Model\Model::fromId($this->getRouteMatch()->getParam('id', null));
-        if (!empty($view) and $view->delete()) {
-            //return $this->returnJson(array('success' => true, 'message' => 'This view has been deleted'));
-            $this->flashMessenger()->addSuccessMessage('This view has been deleted');
-            return $this->redirect()->toRoute('posts/category');
+        if (!empty($view)) {
+            $view->delete();
         }
         //return $this->returnJson(array('success' => false, 'message' => 'View does not exists'));
         $this->flashMessenger()->addSuccessMessage('View does not exists');
-        return $this->redirect()->toRoute('posts/category');
+        return $this->redirect()->toRoute('posts/cate-manager');
     }
     
     

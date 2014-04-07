@@ -93,7 +93,7 @@ return array (
                 'name' => 'Articles',
                 'icon' => 'icon-archive',
                 'label' => 'Articles',
-                'route' => 'posts/articles',
+                'route' => 'posts/article-manager',
                 'params' =>array (
                     'action' => 'index'
                 ),
@@ -108,7 +108,7 @@ return array (
                 'name' => 'Categrory',
                 'icon' => 'icon-archive',
                 'label' => 'Categrory',
-                'route' => 'posts/category',
+                'route' => 'posts/cate-manager',
                 'params' =>array (
                     'action' => 'index'
                 ),

@@ -42,7 +42,7 @@ class ArticlesController extends Action
     {
         $form = new \Posts\Form\ArticlesForm();
         $post = $this->getRequest()->getPost();
-        $form->setAttribute('action', $this->url()->fromRoute('posts/articles/create'));
+        $form->setAttribute('action', $this->url()->fromRoute('posts/article-manager',array('action'=>'create')));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($post->toArray());
@@ -78,11 +78,11 @@ class ArticlesController extends Action
         $viewId    = $this->getRouteMatch()->getParam('id', null);
         $viewModel = \Posts\Model\Articles\Model::fromId($viewId);
         if (empty($viewId) or empty($viewModel)) {
-            return $this->redirect()->toRoute('posts/category');
+            return $this->redirect()->toRoute('posts/cate-manager');
         }
         $form = new \Posts\Form\ArticlesForm();
         $post = $this->getRequest()->getPost();
-        $form->setAttribute('action', $this->url()->fromRoute('posts/articles/edit',array('id'=>$viewId)));
+        $form->setAttribute('action', $this->url()->fromRoute('posts/article-manager',array('action'=>'edit','id'=>$viewId)));
         $form->loadValues($viewModel);
         if ($this->getRequest()->isPost()) {
             $form->setData($post->toArray());
@@ -104,7 +104,7 @@ class ArticlesController extends Action
                 $redirect    = $this->getRouteMatch()->getParam('redirect', null);
                 if(!empty($redirect))
                     return $this->redirect()->toUrl(base64_decode($redirect));
-                return $this->redirect()->toRoute('posts/articles/default',array('action'=>'index'));
+                return $this->redirect()->toRoute('posts/article-manager',array('action'=>'index'));
             }
         }
         $categoryCollection = new Collection();
@@ -125,6 +125,6 @@ class ArticlesController extends Action
         $this->flashMessenger()->addSuccessMessage('This view has been delete');
         if(!empty($redirect))
             return $this->redirect()->toUrl(base64_decode($redirect));
-        return $this->redirect()->toRoute('posts/articles/default',array('action'=>'index'));
+        return $this->redirect()->toRoute('posts/article-manager',array('action'=>'index'));
     }
 }

@@ -2,9 +2,9 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'IndexController' => 'Posts\Controller\IndexController',
-            'CategoryController' => 'Posts\Controller\CategoryController',
-            'ArticlesController' => 'Posts\Controller\ArticlesController',
+            'Posts\Controller\Index' => 'Posts\Controller\IndexController',
+            'Posts\Controller\Category' => 'Posts\Controller\CategoryController',
+            'Posts\Controller\Articles' => 'Posts\Controller\ArticlesController',
         ),
     ),
     'view_manager' => array(
@@ -13,6 +13,74 @@ return array(
     		),
     ),
     'router' => array(
+        'routes' => array(
+            'posts' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    // Change this to something specific to your module
+                    'route'    => '/system/posts',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Posts\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'article-manager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/articles[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                            'constraints' => array(
+                                'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                                'page' => '[0-9]+',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order' => 'ASC|DESC',
+                            ),
+                            'defaults' => array(
+                                'module'=>'posts',
+                                'controller' => 'Posts\Controller\Articles',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'cate-manager' => array(
+                        'type'    => 'Segment',
+                        'may_terminate' => true,
+                        'options' => array(
+                            'route'    => '/category[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:redirect]',
+                            'constraints' => array(
+                                'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]+',
+                                'page' => '[0-9]+',
+                                'order_by' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'order' => 'ASC|DESC',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Posts\Controller\Category',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'router1' => array(
         'routes' => array(
             'posts' => array(
             		'type'    => 'Literal',
@@ -99,7 +167,7 @@ return array(
             														'id' => '\d+',
             												),
             										),
-            								), 
+            								),
             						),
             				),
             				'articles' => array(
@@ -175,7 +243,7 @@ return array(
             										),
             								),
             						),
-            				),           		    
+            				),
             		),
             ),
 

@@ -23,17 +23,17 @@
                     ?>
                            
     					   	<tr class='<?php echo $class;?>'>
-                                <td class=''> <a style="color:#000000;" href="<?php echo $this->url('posts/category/edit', array('id' => $val['id'])); ?>" class="edit-line"><?php echo $this->escapeHtml($val['title']); ?> </a></td>
-                                <td class='sorting_1'> <a style="color:#000000;" href="<?php echo $this->url('posts/category/edit', array('id' => $val['id'])); ?>" class="edit-line"><?php echo $this->escapeHtml($val['slug']); ?></a></td>
+                                <td class=''> <a style="color:#000000;" href="<?php echo $this->url('posts/cate-manager', array('action'=>'edit','id' => $val['id'])); ?>" class="edit-line"><?php echo $this->escapeHtml($val['title']); ?> </a></td>
+                                <td class='sorting_1'> <a style="color:#000000;" href="<?php echo $this->url('posts/cate-manager', array('action'=>'edit','id' => $val['id'])); ?>" class="edit-line"><?php echo $this->escapeHtml($val['slug']); ?></a></td>
                                 <td class='hidden-350'><?php echo $this->escapeHtml($val['active']); ?></td>
                                 <td class='hidden-1024'><?php echo $this->escapeHtml($val['created_at']); ?></td>
                                 <td class='hidden-480'><?php echo $this->escapeHtml($val['updated_at']); ?></td>
                                 <td class='hidden-480'>
-                                 <a href="<?php echo $this->url('posts/category/edit', array('id' => $val['id'])); ?>" class="edit-line">
+                                 <a href="<?php echo $this->url('posts/cate-manager', array('action'=>'edit','id' => $val['id'])); ?>" class="edit-line">
                                     <img src="#" alt="<?php echo $this->escapeHtml($this->translate('Edit')); ?>" />
                                 </a>
                                 |
-                               <a href="<?php echo $this->url('posts/category/delete', array('id' => $val['id'])); ?>" class="delete-line">
+                               <a href="<?php echo $this->url('posts/cate-manager', array('action'=>'delete','id' => $val['id'])); ?>" class="delete-line">
                                     <img src="#" alt="<?php echo $this->escapeHtml($this->translate('Del')); ?>">
                                  </a>
                                 </td>
@@ -46,7 +46,7 @@
 						</tbody></table>
                         <?php echo $this->paginationControl($this->paginator,
                             'Sliding',
-                            'layout/system/paginator', array('route' => 'posts/category/default',
+                            'layout/system/paginator', array('route' => 'posts/cate-manager',
                                 'order_by' => $order_by, 'order' => $order
                             ));
                         ?>
