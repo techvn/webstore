@@ -15,6 +15,7 @@
  * the use of composer completely optional. This setup should work fine for
  * most users, however, feel free to configure autoloading however you'd like.
  */
+ini_set('memory_limit','20M');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include __DIR__.'/define.php';

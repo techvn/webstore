@@ -10,7 +10,7 @@
 return array(
     'module_layouts'=>array(
         'System'=>'layout/system',
-        'Front'=>'layout/layout',
+        'Front'=>'layout/front',
         'User'=>'System',
         'Posts'=>'System',
         'Module'=>'System'

@@ -28,7 +28,7 @@ class Module extends Mvc\Module
 
 
        // $application->getEventManager()->attach('render', array($this, 'setLayoutTitle'));
-       // $this->initSetLayout($e);
+        $this->initSetLayout($e);
 
      //   echo "<pre>".print_r($config,1).'</pre>';
       //  exit;
