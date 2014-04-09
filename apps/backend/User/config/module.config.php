@@ -28,6 +28,7 @@ return array(
                     'route'    => '/system/user',
                     'defaults' => array(
                         '__NAMESPACE__' => 'User\Controller',
+                        'module'=>'user',
                         'controller'    => 'Index',
                         'action'        => 'index',
                     ),

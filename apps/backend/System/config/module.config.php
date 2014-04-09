@@ -16,6 +16,7 @@ return array(
                     'route'    => '/system',
                     'defaults' => array(
                         '__NAMESPACE__' => 'System\Controller',
+                        'module'=>'system',
                         'controller'    => 'Index',
                         'action'        => 'index',
                     ),

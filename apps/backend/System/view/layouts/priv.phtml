@@ -150,8 +150,10 @@
                 </div>
             </form>
             <?php //echo $this->partial('menuleft');?>
+            <?php $module = empty($this->routeParams['module']) ? null : strtolower($this->routeParams['module']); ?>
+            <?php echo $this->partial($module . '-menu.phtml', array('treeview' => $this->treeview, 'moduleMenu' => $this->moduleMenu)); ?>
 		</div><!-- end-left -->
-        <?php $module = empty($this->routeParams['module']) ? null : strtolower($this->routeParams['module']); ?>
+
         <?php //echo "102"; var_dump($this->routeParams);?>
 		<div id="main">
 			<div class="container-fluid">

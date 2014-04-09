@@ -21,6 +21,7 @@ return array(
                     'route'    => '/system/posts',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Posts\Controller',
+                        'module'=>'posts',
                         'controller'    => 'Index',
                         'action'        => 'index',
                     ),
