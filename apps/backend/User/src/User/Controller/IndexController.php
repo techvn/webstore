@@ -37,7 +37,7 @@ class IndexController extends Action
             if($redirect)
                 return $this->redirect()->toUrl(base64_decode($redirect));
             else
-                return $this->redirect()->toRoute('system/default',array('controller'=>'Index','action'=>'index'));
+                return $this->redirect()->toRoute('system');
         }
         return array('form'=>$form,'redirect'=>$redirect);
     }

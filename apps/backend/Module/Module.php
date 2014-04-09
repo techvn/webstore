@@ -71,11 +71,11 @@ class Module extends Mvc\Module
      //   if (!is_null($routeMatch))
           //  echo $routeMatch->getMatchedRouteName();
       //  exit;
-//        $application->getEventManager()->attach(
-//            MvcEvent::EVENT_DISPATCH,
-//            array($this, 'loadMenu'),
-//            -10
-//        );
+        $application->getEventManager()->attach(
+            MvcEvent::EVENT_DISPATCH,
+            array($this, 'loadMenu'),
+            -10
+        );
     }
 
     /**
@@ -106,14 +106,14 @@ class Module extends Mvc\Module
                 ->getServiceManager()
                 ->get('Zend\View\Resolver\TemplatePathStack');
 
-            $navigation = $target->getServiceLocator()->get('navigation');
-            $navigation->findByRoute('module')->addPage(
-                array(
-                    'label' => $route->getParam('module'),
-                    'route' => $event->getRouteMatch()->getMatchedRouteName(),
-                    'active' => true,
-                )
-            );
+//            $navigation = $target->getServiceLocator()->get('navigation');
+//            $navigation->findByRoute('module')->addPage(
+//                array(
+//                    'label' => $route->getParam('module'),
+//                    'route' => $event->getRouteMatch()->getMatchedRouteName(),
+//                    'active' => true,
+//                )
+//            );
 
             if (false !== $resolver->resolve($template)) {
                 $target->layout()->setVariable('moduleMenu', $template);

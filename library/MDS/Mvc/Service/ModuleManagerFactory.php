@@ -63,26 +63,28 @@ class ModuleManagerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         //$moduleCollection = new ModuleCollection();
+        $type = 'TMDT';
+
         $modules          = array(
            array('name'=>'Blog')
         );
-        $array            = array();
-        $autoloader       = AutoloaderFactory::getRegisteredAutoloader(AutoloaderFactory::STANDARD_AUTOLOADER);
 
+        $array            = array();
+
+        $autoloader       = AutoloaderFactory::getRegisteredAutoloader(AutoloaderFactory::STANDARD_AUTOLOADER);
         foreach ($modules as $module) {
             $array[] = $module['name'];
             $autoloader->registerNamespace(
                 $module['name'],
-                PATH . '/apps/modules/' . $module['name']
+                PATH . '/apps/websites/'.$type.'/' . $module['name']
             );
-
         }
 
         $autoloader->register();
 
         $application   = $serviceLocator->get('Application');
         $configuration = $serviceLocator->get('ApplicationConfig');
-        $configuration['module_listener_options']['module_paths'] = array('./apps/modules');
+        $configuration['module_listener_options']['module_paths'] = array('./apps/'.$type);
 
         $listenerOptions  = new Listener\ListenerOptions($configuration['module_listener_options']);
         $defaultListeners = new Listener\DefaultListenerAggregate($listenerOptions);
