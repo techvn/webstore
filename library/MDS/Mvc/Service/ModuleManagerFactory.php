@@ -64,7 +64,7 @@ class ModuleManagerFactory implements FactoryInterface
     {
         //$moduleCollection = new ModuleCollection();
         $modules          = array(
-           array('name'=>'Products')
+           array('name'=>'Blog')
         );
         $array            = array();
         $autoloader       = AutoloaderFactory::getRegisteredAutoloader(AutoloaderFactory::STANDARD_AUTOLOADER);
@@ -73,15 +73,16 @@ class ModuleManagerFactory implements FactoryInterface
             $array[] = $module['name'];
             $autoloader->registerNamespace(
                 $module['name'],
-                GC_APPLICATION_PATH . '/library/Modules/' . $module['name']
+                PATH . '/apps/modules/' . $module['name']
             );
+
         }
 
         $autoloader->register();
 
         $application   = $serviceLocator->get('Application');
         $configuration = $serviceLocator->get('ApplicationConfig');
-        $configuration['module_listener_options']['module_paths'] = array('./library/Modules');
+        $configuration['module_listener_options']['module_paths'] = array('./apps/modules');
 
         $listenerOptions  = new Listener\ListenerOptions($configuration['module_listener_options']);
         $defaultListeners = new Listener\DefaultListenerAggregate($listenerOptions);
@@ -158,6 +159,7 @@ class ModuleManagerFactory implements FactoryInterface
         $moduleManager->getEventManager()->attachAggregate($defaultListeners);
         $moduleManager->getEventManager()->attachAggregate($serviceListener);
         $moduleManager->loadModules();
+
         $config = $moduleManager->getEvent()->getConfigListener()->getMergedConfig(false);
         if (isset($config['router']['routes'])) {
             $router = $serviceLocator->get('Router');
@@ -167,8 +169,9 @@ class ModuleManagerFactory implements FactoryInterface
         if (is_array($config) && isset($config['view_manager'])) {
             $viewManagerConfig = $config['view_manager'];
             $templatePathStack = $serviceLocator->get('ViewTemplatePathStack');
-            $coreConfig        = $serviceLocator->get('CoreConfig');
-            $templatePathStack->setUseStreamWrapper((bool) $coreConfig->getValue('stream_wrapper_is_active'));
+          //  $coreConfig        = $serviceLocator->get('CoreConfig');
+            $templatePathStack->setUseStreamWrapper((bool) true);
+
             if (is_array($viewManagerConfig)) {
                 if (isset($viewManagerConfig['template_path_stack'])) {
                     $templatePathStack->addPaths($viewManagerConfig['template_path_stack']);
@@ -178,8 +181,10 @@ class ModuleManagerFactory implements FactoryInterface
                 }
             }
         }
+
         foreach ($moduleManager->getLoadedModules() as $module) {
             if (method_exists($module, 'onBootstrap')) {
+
                 $module->onBootstrap($application->getMvcEvent());
             }
         }

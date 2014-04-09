@@ -327,12 +327,12 @@ class Model extends AbstractTable
                 )
             );
 
-            $mail = new Mail(
-                'utf-8',
-                $message,
-                $serviceManager->get('CoreConfig')->getValue('mail_from'),
-                $user->getEmail()
-            );
+//            $mail = new Mail(
+//                'utf-8',
+//                $message,
+//                $serviceManager->get('CoreConfig')->getValue('mail_from'),
+//                $user->getEmail()
+//            );
             $mail->send();
             return true;
         }

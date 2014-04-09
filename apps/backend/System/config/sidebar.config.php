@@ -135,4 +135,34 @@ return array (
             )
         ),
     ),
+    'Module' =>
+    array (
+        'id' => '1',
+        'name' => 'Module',
+        'icon' => 'icon-archive',
+        'label' => 'Module',
+        'route' => 'module',
+        'params' =>
+        array (
+
+        ),
+        'resource' => 'content',
+        'pages' =>array (
+            array (
+                'id' => '1',
+                'name' => 'Module',
+                'icon' => 'icon-archive',
+                'label' => 'Module',
+                'route' => 'module',
+                'params' =>array (
+
+                ),
+                'resource' => 'settings',
+                'permission'=>'user/list',
+                'pages' =>array (
+
+                ),
+            )
+        ),
+    ),
 );

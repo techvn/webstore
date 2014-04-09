@@ -12,6 +12,7 @@ return array(
         'System'=>'layout/system',
         'Front'=>'layout/layout',
         'User'=>'System',
-        'Posts'=>'System'
+        'Posts'=>'System',
+        'Module'=>'System'
     )
 );

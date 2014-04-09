@@ -22,9 +22,16 @@ class Module extends Mvc\Module
         $serviceManager = $application->getServiceManager();
         if (isset($config['db'])) {
             $dbAdapter = $this->initDatabase($config);
+            $serviceManager->get('CustomModules');
+
         }
+
+
        // $application->getEventManager()->attach('render', array($this, 'setLayoutTitle'));
-        $this->initSetLayout($e);
+       // $this->initSetLayout($e);
+
+     //   echo "<pre>".print_r($config,1).'</pre>';
+      //  exit;
     }
     public function initDatabase(array $config)
     {
@@ -32,8 +39,11 @@ class Module extends Mvc\Module
         GlobalAdapterFeature::setStaticAdapter($dbAdapter);
     }
     private function getLayout($_array,$key){
-        $rs = 'Front';
+        $rs = 'System';
         while(true){
+            if(!isset($_array[$key])){
+                break;
+            }
             $value = $_array[$key];
             if(strpos($value,'/')){
                 $rs = $key;
@@ -49,7 +59,9 @@ class Module extends Mvc\Module
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
             $config          = $e->getApplication()->getServiceManager()->get('config');
+
             $moduleNamespace = $this->getLayout($config['module_layouts'],$moduleNamespace);
+
             $controller->layout($config['module_layouts'][$moduleNamespace]);
         }, 100);
     }
@@ -82,6 +94,8 @@ class Module extends Mvc\Module
             'factories' => array(
                 'Navbar' => 'System\Navigation\Core\Navbar\MyNavbarFactory',
                 'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+                'CustomModules'         => 'MDS\Mvc\Service\ModuleManagerFactory',
+                'ViewTemplatePathStack' => 'MDS\Mvc\Service\ViewTemplatePathStackFactory',
             )
         );
     }

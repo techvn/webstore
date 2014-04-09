@@ -22,18 +22,18 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
+//                    'default' => array(
+//                        'type'    => 'Segment',
+//                        'options' => array(
+//                            'route'    => '/[:controller[/:action]]',
+//                            'constraints' => array(
+//                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                            ),
+//                            'defaults' => array(
+//                            ),
+//                        ),
+//                    ),
                     'filemanager' => array(
                         'type'    => 'Segment',
                         'may_terminate' => true,
@@ -89,6 +89,7 @@ return array(
         ),
         'template_map' => array(
             'layout/system'           => __DIR__ . '/../view/layouts/priv.phtml',
+            'layout/layout'           => __DIR__ . '/../view/layouts/priv.phtml',
             'layout/system/paginator' => __DIR__.'/../view/layouts/comp/paginator.phtml',
             'layout/system/editor' => __DIR__.'/../view/layouts/editor/viewtree.phtml',
             'pageheader'           => __DIR__ . '/../view/layouts/comp/pageheader.phtml',

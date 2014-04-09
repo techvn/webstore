@@ -3,11 +3,9 @@ $serviceLocator = \MDS\Registry::get('Application')->getServiceManager();
 $router = $serviceLocator->get('Router');
 $config= $serviceLocator->get('Config');
 //echo $this->layout()->routeName.'<br>';
-
 $list = explode('/',$this->layout()->routeName);
 $routers = $router->getRoute($list[0])->assemble();
 $array_router = $config['router']['routes'][$list[0]]['child_routes'];
-
 //echo $this->layout()->routeName;
 //print_r($array_router);
 //;

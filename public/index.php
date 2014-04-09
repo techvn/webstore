@@ -9,6 +9,7 @@ require 'init_autoloader.php';
 // Run the application!
 //Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 $configuration = require 'config/application.config.php';
+
 $application = Zend\Mvc\Application::init($configuration);
 \MDS\Registry::set('Application', $application);
 $application->run();
