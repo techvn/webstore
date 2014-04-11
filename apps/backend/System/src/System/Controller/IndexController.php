@@ -13,8 +13,8 @@ class IndexController extends Action
   //  protected $aclPage = array('resource' => 'settings', 'permission' => 'user');
     public function indexAction()
     {
-      //  $arr = $this->getServiceLocator()->get('config');
-      //  echo "<pre>".print_r($arr,1)."</pre>";
-        return array();
+        $data['customeWidgets'] = array();
+        $this->events()->trigger(__CLASS__, 'dashboard', $this, array('widgets' => &$data['customeWidgets']));
+        return $data;;
     }
 }

@@ -8,6 +8,8 @@ return array(
 		),
 		'invokables' => array(
             'modulePlugin'      => 'MDS\View\Helper\ModulePlugin',
+            'isCheck'           => 'MDS\View\Helper\isCheck',
+            'buttonEdit'        => 'MDS\View\Helper\buttonEdit'
 		),
 	),
 );

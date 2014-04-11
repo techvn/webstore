@@ -7,7 +7,19 @@
 			</h3>
 		</div>
 		<div class="box-content">
-			dashboard
+            <?php foreach ($this->customeWidgets as $widget): ?>
+                <?php if (empty($widget['id']) or empty($widget['title']) or empty($widget['content'])): ?>
+                    <?php continue; ?>
+                <?php endif; ?>
+                <div class="widget-box" id="<?php echo $this->escapeHtml(!empty($widget['id']) ? $widget['id'] : ''); ?>">
+                    <div class="widget-header">
+                        <span><?php echo $this->escapeHtml($this->translate(!empty($widget['title']) ? $widget['title'] : '')); ?></span>
+                    </div>
+                    <div class="widget-body">
+                        <?php echo !empty($widget['content']) ? $widget['content'] : ''; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
 		</div>
 	</div>
 </div>

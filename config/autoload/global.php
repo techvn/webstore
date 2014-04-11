@@ -12,5 +12,16 @@
  */
 
 return array(
-    // ...
+    'core'=>array(
+        'default'=>'news',
+        'website'=>array(
+            'news'=>array(
+                'type'=>'News',
+                'module'=>array(
+                    array('name'=>'Blog'),
+                    array('name'=>'Category')
+                )
+            )
+        )
+    )
 );

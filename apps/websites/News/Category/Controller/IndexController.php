@@ -1,8 +1,20 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Administrator
- * Date: 4/9/14
- * Time: 11:15 PM
- * To change this template use File | Settings | File Templates.
- */
+namespace Category\Controller;
+use MDS\Module\Controller\AbstractController;
+class IndexController extends AbstractController
+{
+    public function indexAction()
+    {
+        $model = new \Category\Model\Model();
+        return array('lists'=>$model->getList());
+    }
+    public function createAction(){
+        return array();
+    }
+    public function editAction(){
+        return array();
+    }
+    public function deleteAction(){
+        return array();
+    }
+}

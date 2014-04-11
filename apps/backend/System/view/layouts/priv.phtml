@@ -151,6 +151,7 @@
             </form>
             <?php //echo $this->partial('menuleft');?>
             <?php $module = empty($this->routeParams['module']) ? null : strtolower($this->routeParams['module']); ?>
+
             <?php echo $this->partial($module . '-menu.phtml', array('treeview' => $this->treeview, 'moduleMenu' => $this->moduleMenu)); ?>
 		</div><!-- end-left -->
 

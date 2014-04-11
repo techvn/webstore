@@ -72,16 +72,12 @@ class Module extends Mvc\Module
         $controller = $matches->getParam('controller');
         $module     = __NAMESPACE__;
         $siteName   = 'Zend Framework';
-
         // Getting the view helper manager from the application service manager
         $viewHelperManager = $e->getApplication()->getServiceManager()->get('viewHelperManager');
-
         // Getting the headTitle helper from the view helper manager
         $headTitleHelper   = $viewHelperManager->get('headTitle');
-
         // Setting a separator string for segments
         $headTitleHelper->setSeparator(' - ');
-
         // Setting the action, controller, module and site name as title segments
         $headTitleHelper->append($action);
         $headTitleHelper->append($controller);
